@@ -1,1050 +1,651 @@
-<?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE html>
-<html b:css='false' b:defaultwidgetversion='2' b:layoutsVersion='3' b:responsive='true' expr:dir='data:blog.languageDirection' xmlns='http://www.w3.org/1999/xhtml' xmlns:b='http://www.google.com/2005/gml/b' xmlns:data='http://www.google.com/2005/gml/data' xmlns:expr='http://www.google.com/2005/gml/expr'>
+<html lang="en" class="dark">
 <head>
-  <meta charset='utf-8'/>
-  <meta content='width=device-width, initial-scale=1, maximum-scale=5' name='viewport'/>
-  <title><data:view.title.escaped/></title>
-
-  <!-- SEO & Meta Tags -->
-  <b:include data='blog' name='all-head-content'/>
-  <meta content='#070B14' name='theme-color'/>
-
-  <!-- Preconnect & Fonts -->
-  <link href='https://fonts.googleapis.com' rel='preconnect'/>
-  <link crossorigin='anonymous' href='https://fonts.gstatic.com' rel='preconnect'/>
-  <link href='https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Poppins:wght@600;700;800;900&amp;family=JetBrains+Mono:wght@400;500;600&amp;display=swap' rel='stylesheet'/>
-
-  <b:skin><![CDATA[
-    /* Handled below in the standard style block. */
-  ]]></b:skin>
-
-  <style>
-/*<![CDATA[*/
-    :root{
-      --primary:#FF6A00;
-      --primary-2:#FF9046;
-      --primary-glow:rgba(255,106,0,.45);
-      --secondary:#2563EB;
-      --secondary-glow:rgba(37,99,235,.45);
-      --accent:#10B981;
-      --ink:#070B14;
-      --ink-2:#0D1424;
-      --panel:rgba(17,26,46,.65);
-      --panel-solid:#111A2E;
-      --line:rgba(148,163,184,.16);
-      --line-strong:rgba(148,163,184,.3);
-      --text:#EAF0FB;
-      --text-soft:#93A2BE;
-      --font-display:'Poppins',sans-serif;
-      --font-body:'Inter',sans-serif;
-      --font-mono:'JetBrains Mono',monospace;
-      --radius:18px;
-      --radius-sm:12px;
-      --maxw:1280px;
-      --ease:cubic-bezier(.16,.84,.44,1);
-    }
-    html[data-theme='light']{
-      --ink:#EEF2F7;
-      --ink-2:#FFFFFF;
-      --panel:rgba(255,255,255,.9);
-      --panel-solid:#FFFFFF;
-      --line:rgba(15,23,42,.15);
-      --line-strong:rgba(15,23,42,.3);
-      --text:#090D16;
-      --text-soft:#334155;
-    }
-    *,*::before,*::after{box-sizing:border-box;}
-    html{scroll-behavior:smooth;}
-    @media (prefers-reduced-motion:reduce){
-      html{scroll-behavior:auto;}
-      *,*::before,*::after{animation-duration:.001ms !important;animation-iteration-count:1 !important;transition-duration:.001ms !important;}
-    }
-    body{
-      margin:0;
-      font-family:var(--font-body);
-      background:var(--ink);
-      color:var(--text);
-      line-height:1.6;
-      overflow-x:hidden;
-      transition:background .4s ease,color .4s ease;
-    }
-    body::before{
-      content:'';
-      position:fixed;inset:0;z-index:-2;
-      background-image:
-        linear-gradient(var(--line) 1px,transparent 1px),
-        linear-gradient(90deg,var(--line) 1px,transparent 1px);
-      background-size:56px 56px;
-      -webkit-mask-image:radial-gradient(ellipse 80% 60% at 50% 0%,#000 40%,transparent 90%);
-      mask-image:radial-gradient(ellipse 80% 60% at 50% 0%,#000 40%,transparent 90%);
-      opacity:.6;
-    }
-    
-    /* Ambient Glowing Orbs */
-    .ambient-orb { position:fixed; border-radius:50%; filter:blur(120px); z-index:-1; opacity:0.35; pointer-events:none; animation:floatOrb 15s infinite ease-in-out alternate; }
-    .orb-1 { width:450px; height:450px; background:var(--primary); top:5%; left:-10%; }
-    .orb-2 { width:550px; height:550px; background:var(--secondary); bottom:5%; right:-15%; animation-delay:-7s; }
-    @keyframes floatOrb { 0% { transform:translate(0, 0) scale(1); } 100% { transform:translate(60px, -40px) scale(1.15); } }
-
-    h1,h2,h3,h4{font-family:var(--font-display);line-height:1.15;margin:0 0 16px;letter-spacing:-.02em;}
-    p{margin:0 0 16px;color:var(--text-soft);}
-    a{text-decoration:none;color:inherit;}
-    img{max-width:100%;display:block;}
-    .container{max-width:var(--maxw);margin:0 auto;padding:0 24px;}
-    .mono{font-family:var(--font-mono);}
-    ::selection{background:var(--primary);color:#fff;}
-    
-    #scanBar{position:fixed;top:0;left:0;height:4px;z-index:1000;background:linear-gradient(90deg,var(--primary),var(--secondary));width:0%;box-shadow:0 0 15px var(--primary-glow);}
-    
-    .chip{
-      display:inline-flex;align-items:center;gap:8px;
-      font-family:var(--font-mono);font-size:12px;letter-spacing:.06em;text-transform:uppercase;
-      padding:7px 14px;border-radius:999px;border:1px solid var(--line-strong);
-      background:var(--panel);color:var(--text-soft);
-      box-shadow:0 4px 12px rgba(0,0,0,0.1);
-    }
-    .chip .dot{width:7px;height:7px;border-radius:50%;background:var(--accent);box-shadow:0 0 10px var(--accent);animation:pulse 1.5s infinite alternate;}
-    @keyframes pulse{0%{opacity:1; transform:scale(1);} 100%{opacity:.4; transform:scale(0.8);}}
-    
-    .btn{
-      display:inline-flex;align-items:center;justify-content:center;gap:8px;
-      padding:14px 26px;border-radius:14px;font-weight:600;font-size:15px;border:none;cursor:pointer;
-      transition:transform .3s var(--ease),box-shadow .3s var(--ease),background .3s var(--ease),border-color .3s var(--ease);
-      font-family:var(--font-body);
-      position:relative;
-      overflow:hidden;
-    }
-    .btn-primary{background:linear-gradient(135deg,var(--primary),var(--primary-2));color:#fff;box-shadow:0 10px 26px var(--primary-glow);}
-    .btn-primary::after{content:'';position:absolute;top:0;left:-100%;width:50%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,0.4),transparent);transform:skewX(-25deg);transition:left 0.7s ease;}
-    .btn-primary:hover{transform:translateY(-4px);box-shadow:0 18px 38px var(--primary-glow);}
-    .btn-primary:hover::after{left:200%;}
-    
-    .btn-outline{background:transparent;border:1.5px solid var(--line-strong);color:var(--text);}
-    .btn-outline:hover{border-color:var(--secondary);color:var(--secondary);transform:translateY(-3px);box-shadow:0 10px 25px var(--secondary-glow);background:rgba(37,99,235,0.05);}
-    
-    .text-gradient{
-      background:linear-gradient(120deg,var(--primary),var(--secondary),var(--primary));
-      background-size:200% auto;
-      -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;
-      animation:shine 4s linear infinite;
-    }
-    @keyframes shine{to{background-position:200% center;}}
-    
-    .section{padding:100px 0;position:relative;}
-    @media(max-width:768px){.section{padding:64px 0;}}
-    .section-head{max-width:620px;margin:0 auto 56px;text-align:center;}
-    .section-head h2{font-size:clamp(28px,4vw,42px);}
-    
-    .panel{
-      background:var(--panel);
-      backdrop-filter:blur(20px) saturate(160%);
-      -webkit-backdrop-filter:blur(20px) saturate(160%);
-      border:1px solid var(--line);
-      border-radius:var(--radius);
-    }
-    .grad-outline{position:relative;border-radius:var(--radius);isolation:isolate;}
-    .grad-outline::before{
-      content:'';position:absolute;inset:0;border-radius:inherit;padding:1px;z-index:-1;
-      background:linear-gradient(140deg,rgba(255,106,0,.55),rgba(37,99,235,.15) 40%,rgba(255,106,0,0) 70%);
-      -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
-      -webkit-mask-composite:xor;mask-composite:exclude;
-      opacity:0;transition:opacity .4s ease;
-    }
-    .grad-outline:hover::before{opacity:1;}
-    
-    .spot{position:relative;overflow:hidden;}
-    .spot::after{
-      content:'';position:absolute;inset:0;border-radius:inherit;pointer-events:none;opacity:0;
-      background:radial-gradient(220px circle at var(--mx,50%) var(--my,50%),rgba(255,106,0,.14),transparent 70%);
-      transition:opacity .4s ease;
-    }
-    .spot:hover::after{opacity:1;}
-    
-    .fade-up{opacity:0;transform:translateY(35px) scale(0.98);transition:opacity .9s var(--ease),transform .9s var(--ease);}
-    .fade-up.visible{opacity:1;transform:translateY(0) scale(1);}
-    .stagger .fade-up:nth-child(1){transition-delay:0s;}
-    .stagger .fade-up:nth-child(2){transition-delay:.1s;}
-    .stagger .fade-up:nth-child(3){transition-delay:.2s;}
-    .stagger .fade-up:nth-child(4){transition-delay:.3s;}
-    .stagger .fade-up:nth-child(5){transition-delay:.4s;}
-    .stagger .fade-up:nth-child(6){transition-delay:.5s;}
-
-    /* HEADER */
-    header{position:fixed;top:0;left:0;width:100%;z-index:200;padding:18px 0;transition:padding .4s ease,background .4s ease,border-color .4s ease, box-shadow .4s ease;}
-    header.scrolled{padding:12px 0;background:rgba(7,11,20,.85);backdrop-filter:blur(18px);border-bottom:1px solid var(--line); box-shadow:0 10px 30px rgba(0,0,0,0.4);}
-    html[data-theme='light'] header.scrolled{background:rgba(255,255,255,.9);}
-    .nav-inner{display:flex;justify-content:space-between;align-items:center;gap:16px;}
-    .logo{display:flex;align-items:center;gap:10px;font-family:var(--font-display);font-size:20px;font-weight:800;letter-spacing:-.02em; transition:transform 0.3s ease;}
-    .logo:hover{transform:scale(1.05);}
-    .logo img { height: 36px; width: auto; object-fit: contain; }
-    .nav-links{display:flex;gap:6px;}
-    .nav-links a{padding:9px 14px;border-radius:10px;font-size:14.5px;font-weight:500;transition:all .3s ease;}
-    .nav-links a:hover{background:rgba(255,106,0,.1);color:var(--primary); transform:translateY(-2px);}
-    .nav-ctas{display:flex;align-items:center;gap:10px;}
-    .icon-btn{width:40px;height:40px;border-radius:11px;border:1px solid var(--line-strong);background:var(--panel);display:flex;align-items:center;justify-content:center;cursor:pointer;color:var(--text);font-size:16px; transition:all 0.3s ease;}
-    .icon-btn:hover{background:var(--primary); color:#fff; border-color:var(--primary); box-shadow:0 5px 15px var(--primary-glow); transform:rotate(90deg);}
-    .burger{display:none;}
-    @media(max-width:900px){
-      .nav-links{display:none;}
-      .btn-primary.nav-cta{display:none;}
-      .burger{display:flex;}
-      .burger:hover{transform:rotate(0);}
-    }
-    .mobile-panel{position:fixed;inset:0;z-index:300;background:var(--ink);padding:24px;display:none; opacity:0; transition:opacity 0.3s ease;}
-    .mobile-panel.open{display:block; opacity:1;}
-    .mobile-panel ul{list-style:none;margin:28px 0;padding:0;}
-    .mobile-panel li{border-bottom:1px solid var(--line);}
-    .mobile-panel a{display:block;padding:16px 4px;font-size:19px;font-weight:600;}
-
-    /* ADVANCED HERO */
-    .hero{position:relative;padding:190px 0 110px;overflow:hidden;text-align:center;}
-    .hero canvas{position:absolute;inset:0;width:100%;height:100%;z-index:0;opacity:.45;}
-    .hero-inner{position:relative;z-index:1; max-width: 1050px; margin: 0 auto;}
-    
-    /* Ultra-Bold Premium Tandav India Badge */
-    .hero-tandav-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      padding: 8px 24px;
-      background: var(--panel);
-      border: 1.5px solid var(--line-strong);
-      border-radius: 99px;
-      margin-bottom: 26px;
-      box-shadow: 0 15px 35px rgba(0,0,0,0.2), 0 0 20px var(--primary-glow);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-    }
-    .tandav-brand-text {
-      font-family: var(--font-display);
-      font-size: 15px;
-      font-weight: 900;
-      letter-spacing: .08em;
-      text-transform: uppercase;
-      background: linear-gradient(135deg, #FFFFFF, var(--text-soft));
-      -webkit-background-clip: text;
-      background-clip: text;
-      -webkit-text-fill-color: transparent;
-      display: inline-flex;
-      gap: 6px;
-    }
-    .tandav-brand-text span {
-      background: linear-gradient(135deg, var(--primary), var(--secondary));
-      -webkit-background-clip: text;
-      background-clip: text;
-      -webkit-text-fill-color: transparent;
-      text-shadow: 0 0 25px var(--primary-glow);
-    }
-
-    .hero h1{font-size:clamp(32px, 4.2vw, 56px);margin:0 0 36px;letter-spacing:-.03em; line-height: 1.25;}
-    .desktop-line-1 { white-space: nowrap; display: block; }
-    .desktop-line-2 { display: block; }
-    @media(max-width:900px){
-      .desktop-line-1, .desktop-line-2 { white-space: normal; display: inline; }
-      .hero h1 { font-size: clamp(30px, 6.5vw, 44px); }
-    }
-    
-    /* Full Search Bar Redirect Link */
-    .hero-search-bar {
-      display: flex;
-      align-items: center;
-      background: var(--panel);
-      border: 1px solid var(--line-strong);
-      padding: 8px 8px 8px 24px;
-      border-radius: 99px;
-      max-width: 640px;
-      margin: 0 auto 48px auto;
-      box-shadow: 0 20px 50px rgba(0,0,0,0.15), inset 0 0 0 1px var(--line);
-      backdrop-filter: blur(24px);
-      -webkit-backdrop-filter: blur(24px);
-      position: relative;
-      text-decoration: none;
-      cursor: pointer;
-      transition: transform .3s var(--ease), border-color .3s var(--ease), box-shadow .3s var(--ease);
-    }
-    .hero-search-bar:hover {
-      transform: translateY(-3px);
-      border-color: var(--primary);
-      box-shadow: 0 15px 35px var(--primary-glow), inset 0 0 0 1px var(--primary);
-    }
-    @media(max-width:600px){
-      .hero-search-bar { padding: 6px 6px 6px 16px; border-radius: 24px; }
-    }
-    .hero-search-bar .ai-badge {
-      font-family: var(--font-mono);
-      font-size: 13px;
-      font-weight: 600;
-      color: var(--primary);
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      margin-right: 16px;
-    }
-    .hero-search-bar .ai-badge .pulse-dot { width:8px; height:8px; background:var(--primary); border-radius:50%; box-shadow:0 0 10px var(--primary); animation:pulse 1.2s infinite alternate;}
-    
-    .hero-search-bar .typing-container {
-      flex: 1;
-      text-align: left;
-      overflow: hidden;
-    }
-    .hero-search-bar .typing-text {
-      color: var(--text-soft);
-      font-size: 15px;
-      border-right: 2px solid var(--primary);
-      white-space: nowrap;
-      overflow: hidden;
-      display: inline-block;
-      animation: typing 5s steps(30, end) infinite alternate;
-    }
-    @keyframes typing {
-      0%, 10% { width: 0; opacity:1;}
-      70%, 100% { width: 100%; opacity:1;}
-    }
-    .hero-search-bar .btn-primary {
-      border-radius: 99px;
-      padding: 12px 28px;
-      font-size: 14px;
-      margin-left: 10px;
-      white-space: nowrap;
-      pointer-events: none;
-    }
-
-    .hero-frame{display:flex;justify-content:center;gap:18px;flex-wrap:wrap; perspective:1000px;}
-    .hero-tag{font-family:var(--font-mono);font-size:12.5px;color:var(--text-soft);padding:9px 18px;border-radius:10px;border:1px solid var(--line);background:var(--panel); animation:floatTag 4s ease-in-out infinite alternate;}
-    .hero-tag:nth-child(2) { animation-delay: 1.2s; }
-    .hero-tag:nth-child(3) { animation-delay: 2.4s; }
-    @keyframes floatTag { 0% { transform: translateY(0) rotateX(0deg); box-shadow: 0 5px 15px rgba(0,0,0,0.1); } 100% { transform: translateY(-12px) rotateX(10deg); box-shadow: 0 15px 25px var(--primary-glow); border-color:var(--primary); } }
-
-    .scroll-cue{position:absolute;bottom:24px;left:50%;transform:translateX(-50%);width:22px;height:36px;border:1.5px solid var(--line-strong);border-radius:14px;z-index:1;}
-    .scroll-cue::before{content:'';position:absolute;top:6px;left:50%;transform:translateX(-50%);width:4px;height:8px;border-radius:2px;background:var(--primary);animation:scrolldown 1.6s infinite;}
-    @keyframes scrolldown{0%{opacity:1;top:6px;}100%{opacity:0;top:18px;}}
-
-    /* TICKER */
-    .ticker-wrap{border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:var(--panel-solid);overflow:hidden;padding:16px 0; position:relative; box-shadow:0 0 30px rgba(0,0,0,0.1);}
-    .ticker-track{display:flex;gap:48px;width:max-content;animation:ticker 25s linear infinite;}
-    .ticker-track span{font-family:var(--font-mono);font-size:13px;color:var(--text-soft);white-space:nowrap; transition:color 0.3s ease;}
-    .ticker-track span:hover{color:var(--primary);}
-    .ticker-track span::before{content:'◆ ';color:var(--primary); animation:pulse 1s infinite alternate;}
-    @keyframes ticker{from{transform:translateX(0);}to{transform:translateX(-50%);}}
-
-    /* STATS */
-    .stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;}
-    @media(max-width:860px){.stats-grid{grid-template-columns:repeat(2,1fr);}}
-    .stat-card{padding:30px 20px;text-align:center; transition:transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);}
-    .stat-card:hover{transform:translateY(-10px); border-color:var(--primary);}
-    .ring-wrap{position:relative;width:96px;height:96px;margin:0 auto 14px;}
-    .ring-wrap svg{transform:rotate(-90deg); drop-shadow:0 0 10px var(--primary-glow);}
-    .ring-bg{stroke:var(--line);}
-    .ring-fg{stroke:var(--primary);stroke-linecap:round;transition:stroke-dashoffset 2s cubic-bezier(0.1, 0.7, 0.1, 1);}
-    .ring-num{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:var(--font-mono);font-weight:600;font-size:18px; text-shadow:0 0 10px var(--primary-glow);}
-    .stat-card p{margin:0;font-size:13.5px;font-weight:500;color:var(--text-soft);}
-
-    /* HOW IT WORKS */
-    .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:0;position:relative;}
-    @media(max-width:860px){.steps{grid-template-columns:1fr;gap:24px;}}
-    .step{padding:0 18px;text-align:center;position:relative; transition:transform 0.3s ease;}
-    .step:hover{transform:translateY(-5px);}
-    .step-num{width:46px;height:46px;border-radius:50%;margin:0 auto 16px;display:flex;align-items:center;justify-content:center;font-family:var(--font-mono);font-weight:600;background:var(--panel-solid);border:1px solid var(--line-strong);color:var(--primary);position:relative;z-index:1; box-shadow:0 0 15px rgba(0,0,0,0.1);}
-    .step-num::after{content:'';position:absolute;inset:-6px;border-radius:50%;border:2px dashed var(--primary);animation:spin 6s linear infinite; opacity:0; transition:opacity 0.3s ease;}
-    .step:hover .step-num::after{opacity:0.8;}
-    @keyframes spin { 100% { transform:rotate(360deg); } }
-    .steps::before{content:'';position:absolute;top:23px;left:12.5%;right:12.5%;height:1px;background:linear-gradient(90deg,transparent,var(--primary) 50%,transparent); opacity:0.3; background-size:200% 100%; animation:slide-line 3s linear infinite;}
-    @keyframes slide-line { to { background-position:-200% 0; } }
-    @media(max-width:860px){.steps::before{display:none;}}
-    .step h3{font-size:16px;}
-    .step p{font-size:13.5px;}
-
-    /* BENTO */
-    .section-title{text-align:center;font-size:clamp(26px,3.6vw,38px);margin-bottom:12px;}
-    .bento-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;}
-    @media(max-width:1024px){.bento-grid{grid-template-columns:repeat(3,1fr);}}
-    @media(max-width:768px){.bento-grid{grid-template-columns:repeat(2,1fr);}}
-    @media(max-width:480px){.bento-grid{grid-template-columns:1fr;}}
-    
-    .bento-card{padding:26px;transition:transform .4s cubic-bezier(.175,.885,.32,1.275),border-color .3s ease,box-shadow .3s ease, background .3s ease;transform-style:preserve-3d;will-change:transform;}
-    .bento-card:hover{transform:translateY(-8px) scale(1.02); border-color:rgba(255,106,0,.6); box-shadow:0 15px 40px rgba(255,106,0,.15), inset 0 0 20px rgba(255,106,0,.05); background:var(--panel);}
-    
-    .bento-card h3{font-size:15.5px;margin:0 0 6px;}
-    .bento-card p{font-size:13px;margin:0;}
-    .bento-icon{width:46px;height:46px;border-radius:12px;background:rgba(255,106,0,.12);display:flex;align-items:center;justify-content:center;margin-bottom:18px;color:var(--primary); transition:all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);}
-    .bento-card:hover .bento-icon{transform:scale(1.15) rotate(5deg); background:var(--primary); color:#fff; box-shadow:0 5px 15px var(--primary-glow);}
-    .bento-card.wide{grid-column:span 2;}
-    @media(max-width:480px){.bento-card.wide{grid-column:span 1;}}
-
-    /* TESTIMONIALS */
-    .test-track{display:flex;gap:18px;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:15px;}
-    .test-track::-webkit-scrollbar{height:6px; border-radius:10px; background:var(--ink-2);}
-    .test-track::-webkit-scrollbar-thumb{background:var(--line-strong); border-radius:10px;}
-    .test-track::-webkit-scrollbar-thumb:hover{background:var(--primary);}
-    .test-card{scroll-snap-align:start;min-width:300px;padding:24px; transition:transform 0.3s ease, box-shadow 0.3s ease;}
-    .test-card:hover{transform:translateY(-5px); box-shadow:0 10px 25px rgba(0,0,0,0.15);}
-    .stars{color:#F59E0B;margin-bottom:10px;font-size:14px; text-shadow:0 0 8px rgba(245, 158, 11, 0.4);}
-    .test-user{display:flex;align-items:center;gap:10px;margin-top:16px;}
-    .avatar{width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,var(--primary),var(--secondary));display:flex;align-items:center;justify-content:center;font-family:var(--font-mono);font-size:13px;color:#fff; box-shadow:0 4px 10px var(--primary-glow); border:2px solid var(--ink-2); outline:1px solid var(--line-strong);}
-
-    /* Trust bar (rating summary above testimonials) */
-    .trust-bar{display:flex;align-items:center;justify-content:center;gap:30px;flex-wrap:wrap;padding:22px 36px;margin-bottom:34px;border-radius:var(--radius);}
-    .trust-rating{display:flex;flex-direction:column;align-items:center;gap:3px;}
-    .trust-score{font-family:var(--font-display);font-size:30px;font-weight:800;color:var(--text);line-height:1;}
-    .trust-stars{color:var(--primary);font-size:14px;letter-spacing:2px;}
-    .trust-divider{width:1px;height:38px;background:var(--line-strong);}
-    .trust-stat{display:flex;flex-direction:column;align-items:center;gap:3px;}
-    .trust-stat strong{font-family:var(--font-display);font-size:21px;color:var(--text);line-height:1;}
-    .trust-stat span{font-size:11px;color:var(--text-soft);font-family:var(--font-mono);text-transform:uppercase;letter-spacing:.05em;margin-top:2px;}
-    @media(max-width:640px){.trust-bar{gap:18px;padding:18px;}}
-
-    /* Testimonial polish: verified badge, quote mark, review date */
-    .test-card{position:relative;}
-    .test-card .quote-mark{position:absolute;top:14px;right:18px;font-family:var(--font-display);font-size:40px;color:var(--line-strong);line-height:1;user-select:none;}
-    .verified-badge{display:inline-flex;align-items:center;gap:3px;font-size:10px;font-weight:600;color:var(--accent);font-family:var(--font-mono);margin-left:6px;letter-spacing:.02em;vertical-align:middle;}
-    .verified-badge svg{width:11px;height:11px;}
-    .test-date{display:block;margin-top:3px;font-size:10.5px;color:var(--text-soft);opacity:.8;font-family:var(--font-mono);}
-
-    /* FAQ */
-    .faq-item{border:1px solid var(--line);border-radius:14px;margin-bottom:12px;overflow:hidden;background:var(--panel); transition:all 0.3s ease;}
-    .faq-item:hover{border-color:var(--primary); box-shadow:0 5px 15px rgba(0,0,0,0.1);}
-    .faq-q{padding:18px 20px;display:flex;justify-content:space-between;align-items:center;cursor:pointer;font-weight:600;font-size:15px;}
-    .faq-icon{font-family:var(--font-mono);color:var(--primary);transition:transform .4s cubic-bezier(0.175, 0.885, 0.32, 1.275);}
-    .faq-item.open .faq-icon{transform:rotate(135deg); color:var(--secondary);}
-    .faq-a{max-height:0;overflow:hidden;transition:max-height .4s ease;padding:0 20px;}
-    .faq-item.open .faq-a{max-height:220px; padding-bottom:18px;}
-    .faq-a p{font-size:14.5px;}
-
-    /* APP DOWNLOAD */
-    .app-cta{padding:56px;overflow:hidden;position:relative;}
-    .store-row{display:flex;gap:14px;margin-top:22px;flex-wrap:wrap;}
-    .store-btn{display:flex;align-items:center;gap:10px;padding:12px 20px;border-radius:13px;border:1px solid var(--line-strong);background:var(--ink-2);font-size:14px;}
-
-    /* BLOGGER DYNAMIC CONTENT */
-    .post-outer-container{max-width:820px;margin:0 auto;}
-    .post-title{font-size:clamp(28px,4vw,44px); line-height:1.2; margin-bottom: 24px;}
-    .post-body{font-size:16px;color:var(--text); line-height: 1.8;}
-    .post-body img{border-radius:14px;margin:22px 0; max-width:100%; height:auto; box-shadow:0 10px 30px rgba(0,0,0,0.15);}
-    .post-body h2, .post-body h3 { margin-top: 32px; color: var(--text); }
-    #comments{max-width:820px;margin:40px auto 0;}
-    .comment-form iframe{border-radius:12px;background:var(--ink-2);}
-    .blog-pager{display:flex;justify-content:center;gap:16px;margin-top:40px;}
-    .blog-pager a{padding:12px 24px;border-radius:12px;border:1px solid var(--line-strong);font-size:14px; transition:all 0.3s ease; font-weight:600;}
-    .blog-pager a:hover{background:var(--primary); color:#fff; border-color:var(--primary); box-shadow:0 5px 15px var(--primary-glow);}
-
-    /* FOOTER */
-    footer{background:var(--panel-solid);border-top:1px solid var(--line);padding:72px 0 32px;}
-    .footer-grid{display:grid;gap:40px;margin-bottom:52px;}
-    .footer-bottom{text-align:center;padding-top:28px;border-top:1px solid var(--line);color:var(--text-soft);font-size:13px;font-family:var(--font-mono);}
-
-    .back-top{position:fixed;bottom:22px;left:22px;width:44px;height:44px;border-radius:50%;background:var(--panel-solid);border:1px solid var(--line-strong);display:none;align-items:center;justify-content:center;z-index:150;cursor:pointer;color:var(--text); transition:all 0.3s ease;}
-    .back-top:hover{background:var(--primary); color:#fff; border-color:var(--primary); box-shadow:0 5px 15px var(--primary-glow); transform:translateY(-3px);}
-    .back-top.show{display:flex; animation:popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);}
-    @keyframes popIn { 0% {transform:scale(0); opacity:0;} 100% {transform:scale(1); opacity:1;} }
-/*]]>*/
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jan Shakti | Tandav India Sovereign Civic Ledger</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        saffron: {
+                            50: '#fff7ed',
+                            500: '#f97316',
+                            600: '#ea580c',
+                            700: '#c2410c'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .grid-card { background: #0f172a; border: 1px solid #1e293b; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
+        .grid-card:hover { border-color: #f97316; transform: translateY(-3px); box-shadow: 0 10px 30px -10px rgba(249, 115, 22, 0.2); }
+        .glow-orange { box-shadow: 0 0 25px rgba(249, 115, 22, 0.25); }
+        .glass-panel { background: rgba(15, 23, 42, 0.85); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.08); }
+        /* Custom scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #050a14; }
+        ::-webkit-scrollbar-thumb { background: #1e293b; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #f97316; }
+    </style>
 </head>
+<body class="bg-[#050a14] text-slate-100 min-h-screen flex flex-col justify-between selection:bg-orange-500 selection:text-white">
 
-<body>
-<!-- Glowing Ambient Orbs for 3D depth -->
-<div class='ambient-orb orb-1'/>
-<div class='ambient-orb orb-2'/>
-
-<div id='scanBar'/>
-
-<!-- Navigation -->
-<header id='header'>
-  <div class='container nav-inner'>
-    <a class='logo' expr:href='data:blog.homepageUrl'>
-      <img alt='Tandav India Logo' src='https://dfgdgeqgetgeqtggqergqegh.wordpress.com/wp-content/uploads/2026/07/san-gamez-logo-4.png'/>
-      Tandav<span class='text-gradient'>India</span>
-    </a>
-    <nav class='nav-links'>
-      <a expr:href='data:blog.homepageUrl'>Home</a>
-      <a expr:href='data:blog.homepageUrl + &quot;#services&quot;'>Services</a>
-      <a expr:href='data:blog.homepageUrl + &quot;#features&quot;'>Features</a>
-      <a expr:href='data:blog.homepageUrl + &quot;#faq&quot;'>FAQ</a>
-    </nav>
-    <div class='nav-ctas'>
-      <button aria-label='Toggle theme' class='icon-btn' id='themeToggle'>&#9680;</button>
-      <a class='btn btn-primary nav-cta' href='https://play.google.com/store/apps/details?id=com.TandavIndia.App' target='_blank'>Download App</a>
-      <button aria-label='Open menu' class='icon-btn burger' id='burgerBtn'>&#9776;</button>
-    </div>
-  </div>
-</header>
-
-<div class='mobile-panel' id='mobilePanel'>
-  <div class='nav-inner'>
-    <a class='logo' expr:href='data:blog.homepageUrl'>
-      <img alt='Tandav India Logo' src='https://dfgdgeqgetgeqtggqergqegh.wordpress.com/wp-content/uploads/2026/07/san-gamez-logo-4.png'/>
-      Tandav<span class='text-gradient'>India</span>
-    </a>
-    <button aria-label='Close menu' class='icon-btn' id='closeBurger'>&#10005;</button>
-  </div>
-  <ul>
-    <li><a expr:href='data:blog.homepageUrl'>Home</a></li>
-    <li><a expr:href='data:blog.homepageUrl + &quot;#services&quot;'>Services</a></li>
-    <li><a expr:href='data:blog.homepageUrl + &quot;#features&quot;'>Features</a></li>
-    <li><a expr:href='data:blog.homepageUrl + &quot;#faq&quot;'>FAQ</a></li>
-  </ul>
-  <a class='btn btn-primary' href='https://play.google.com/store/apps/details?id=com.TandavIndia.App' style='width:100%; margin-top:20px;' target='_blank'>Download App</a>
-</div>
-
-<!-- ==============================================
-     HOMEPAGE EXCLUSIVE BLOCKS
-     ============================================== -->
-<b:if cond='data:view.isHomepage'>
-
-  <!-- ADVANCED HERO -->
-  <section class='hero' id='home'>
-    <canvas id='netCanvas'/>
-    <div class='container hero-inner'>
-      <div class='hero-tandav-badge fade-up visible'>
-        <div class='chip' style='border:none; background:transparent; padding:0; box-shadow:none;'><span class='dot'/> 28 States Live</div>
-        <span class='tandav-brand-text'>TANDAV <span>INDIA</span></span>
-      </div>
-      <h1 class='fade-up visible'>
-        <span class='desktop-line-1'>One INDIA One App</span>
-        <span class='desktop-line-2'>Access Every <span class='text-gradient'>Government Service.</span></span>
-      </h1>
-      
-      <!-- Full Search Bar Redirect Link -->
-      <a class='hero-search-bar fade-up visible' href='https://play.google.com/store/apps/details?id=com.TandavIndia.App' target='_blank'>
-         <div class='ai-badge'><div class='pulse-dot'/> AI Shalini</div>
-         <div class='typing-container'>
-            <span class='typing-text'>Search &quot;Download my PAN card&quot;...</span>
-         </div>
-         <span class='btn btn-primary'>Search</span>
-      </a>
-
-      <div class='hero-frame fade-up visible'>
-        <span class='hero-tag mono'>850+ services indexed</span>
-        <span class='hero-tag mono'>28 states live</span>
-        <span class='hero-tag mono'>uptime 99.9%</span>
-      </div>
-    </div>
-    <div class='scroll-cue'/>
-  </section>
-
-  <!-- TICKER -->
-  <div class='ticker-wrap'>
-    <div class='ticker-track'>
-      <span>Government Schemes</span><span>Certificates</span><span>Identity</span><span>Transport</span><span>Railways</span><span>Healthcare</span><span>Education</span><span>Employment</span><span>Agriculture</span><span>Business</span><span>Finance</span><span>Housing</span>
-      <span>Government Schemes</span><span>Certificates</span><span>Identity</span><span>Transport</span><span>Railways</span><span>Healthcare</span><span>Education</span><span>Employment</span><span>Agriculture</span><span>Business</span><span>Finance</span><span>Housing</span>
-    </div>
-  </div>
-
-  <!-- STATS -->
-  <section class='section container'>
-    <div class='stats-grid stagger'>
-      <div class='stat-card panel fade-up'>
-        <div class='ring-wrap'>
-          <svg height='96' width='96'><circle class='ring-bg' cx='48' cy='48' fill='none' r='42' stroke-width='6'/><circle class='ring-fg' cx='48' cy='48' data-pct='92' fill='none' r='42' stroke-dasharray='264' stroke-dashoffset='264' stroke-width='6'/></svg>
-          <span class='ring-num counter mono' data-target='850'>0</span>
-        </div>
-        <p>Govt. Services</p>
-      </div>
-      <div class='stat-card panel fade-up'>
-        <div class='ring-wrap'>
-          <svg height='96' width='96'><circle class='ring-bg' cx='48' cy='48' fill='none' r='42' stroke-width='6'/><circle class='ring-fg' cx='48' cy='48' data-pct='100' fill='none' r='42' stroke-dasharray='264' stroke-dashoffset='264' stroke-width='6'/></svg>
-          <span class='ring-num counter mono' data-target='28'>0</span>
-        </div>
-        <p>States Supported</p>
-      </div>
-      <div class='stat-card panel fade-up'>
-        <div class='ring-wrap'>
-          <svg height='96' width='96'><circle class='ring-bg' cx='48' cy='48' fill='none' r='42' stroke-width='6'/><circle class='ring-fg' cx='48' cy='48' data-pct='100' fill='none' r='42' stroke-dasharray='264' stroke-dashoffset='264' stroke-width='6'/></svg>
-          <span class='ring-num mono'>24&#215;7</span>
-        </div>
-        <p>AI Assistance</p>
-      </div>
-      <div class='stat-card panel fade-up'>
-        <div class='ring-wrap'>
-          <svg height='96' width='96'><circle class='ring-bg' cx='48' cy='48' fill='none' r='42' stroke-width='6'/><circle class='ring-fg' cx='48' cy='48' data-pct='100' fill='none' r='42' stroke-dasharray='264' stroke-dashoffset='264' stroke-width='6'/></svg>
-          <span class='ring-num counter mono' data-target='100'>0</span>
-        </div>
-        <p>% Secure Platform</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- HOW IT WORKS -->
-  <section class='section container'>
-    <div class='section-head fade-up visible'>
-      <div class='chip'><span class='dot'/> Process</div>
-      <h2 style='margin-top:14px;'>How It Works</h2>
-    </div>
-    <div class='steps stagger'>
-      <div class='step fade-up'><div class='step-num'>01</div><h3>Choose Service</h3><p>Pick from 850+ verified categories.</p></div>
-      <div class='step fade-up'><div class='step-num'>02</div><h3>Search Instantly</h3><p>AI-assisted smart &amp; voice search.</p></div>
-      <div class='step fade-up'><div class='step-num'>03</div><h3>Open Official Portal</h3><p>Direct, verified government redirect.</p></div>
-      <div class='step fade-up'><div class='step-num'>04</div><h3>Complete Process</h3><p>Finish securely on the official site.</p></div>
-    </div>
-  </section>
-
-  <!-- SERVICES BENTO -->
-  <section class='section container' id='services'>
-    <div class='section-head fade-up visible'>
-      <div class='chip'><span class='dot'/> Directory</div>
-      <h2 style='margin-top:14px;'>Essential Services</h2>
-      <p>Every official category, indexed and verified.</p>
-    </div>
-    <div class='bento-grid stagger'>
-      <div class='bento-card panel grad-outline spot fade-up tilt'>
-        <div class='bento-icon'>🏛&#65039;</div><h3>Govt. Schemes</h3><p>Central &amp; state welfare schemes, matched to your profile.</p>
-      </div>
-      <div class='bento-card panel grad-outline spot fade-up tilt'>
-        <div class='bento-icon'>🪪</div><h3>Identity &amp; Certificates</h3><p>Aadhaar, PAN, Voter ID and official certificates.</p>
-      </div>
-      <div class='bento-card panel grad-outline spot fade-up tilt'>
-        <div class='bento-icon'>🚌</div><h3>Transport</h3><p>RTO services, licence renewal, challans, FASTag.</p>
-      </div>
-      <div class='bento-card panel grad-outline spot fade-up tilt'>
-        <div class='bento-icon'>🚆</div><h3>Railways</h3><p>Tickets, PNR status, enquiries.</p>
-      </div>
-      <div class='bento-card panel grad-outline spot fade-up tilt'>
-        <div class='bento-icon'>🏥</div><h3>Healthcare</h3><p>Ayushman Bharat &amp; hospital access.</p>
-      </div>
-      <div class='bento-card panel grad-outline spot fade-up tilt'>
-        <div class='bento-icon'>🎓</div><h3>Education</h3><p>Scholarships, admissions, results.</p>
-      </div>
-      <div class='bento-card panel grad-outline spot fade-up tilt'>
-        <div class='bento-icon'>💼</div><h3>Employment</h3><p>Government jobs &amp; skill programs.</p>
-      </div>
-      <div class='bento-card panel grad-outline spot fade-up tilt'>
-        <div class='bento-icon'>🌾</div><h3>Agriculture</h3><p>PM-Kisan &amp; farmer support schemes.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- FEATURES BENTO -->
-  <section class='section container' id='features' style='padding-top:0;'>
-    <div class='section-head fade-up visible'>
-      <div class='chip'><span class='dot'/> Platform</div>
-      <h2 style='margin-top:14px;'>Built Like a Command Console</h2>
-      <p>Enterprise-grade tools, tuned for everyday citizens.</p>
-    </div>
-    <div class='bento-grid stagger'>
-      <div class='bento-card panel grad-outline spot fade-up tilt wide'>
-        <div class='bento-icon'>🤖</div><h3>AI Shalini</h3><p>Ask in plain language, get routed to the right verified service instantly.</p>
-      </div>
-      <div class='bento-card panel grad-outline spot fade-up tilt'><div class='bento-icon'>🎙&#65039;</div><h3>Tandav Bol</h3><p>Search in your own language.</p></div>
-      <div class='bento-card panel grad-outline spot fade-up tilt'><div class='bento-icon'>🔐</div><h3>Tandav Suraksha</h3><p>Encrypted document storage.</p></div>
-      <div class='bento-card panel grad-outline spot fade-up tilt'><div class='bento-icon'>🎯</div><h3>Scheme Dhundho</h3><p>Matched to your eligibility.</p></div>
-      <div class='bento-card panel grad-outline spot fade-up tilt'><div class='bento-icon'>🔔</div><h3>Notifications</h3><p>Never miss a deadline.</p></div>
-      <div class='bento-card panel grad-outline spot fade-up tilt'><div class='bento-icon'>🗺&#65039;</div><h3>State-wise Access</h3><p>Localized to your state.</p></div>
-      <div class='bento-card panel grad-outline spot fade-up tilt wide'><div class='bento-icon'>🔗</div><h3>Official Portal Redirect</h3><p>Direct, verified links only &#8212; zero third-party risk.</p></div>
-    </div>
-  </section>
-
-  <!-- TESTIMONIALS -->
-  <section class='section container'>
-    <div class='section-head fade-up visible'>
-      <div class='chip'><span class='dot'/> Feedback</div>
-      <h2 style='margin-top:14px;'>Trusted Across India</h2>
-      <p>Real experiences from citizens using Tandav India every day.</p>
-    </div>
-
-    <div class='trust-bar panel grad-outline fade-up visible'>
-      <div class='trust-rating'><span class='trust-score'>4.9</span><span class='trust-stars'>&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
-      <div class='trust-divider'/>
-      <div class='trust-stat'><strong><span class='counter' data-target='12400'>0</span>+</strong><span>Verified Reviews</span></div>
-      <div class='trust-divider'/>
-      <div class='trust-stat'><strong><span class='counter' data-target='98'>0</span>%</strong><span>Recommend Us</span></div>
-      <div class='trust-divider'/>
-      <div class='trust-stat'><strong><span class='counter' data-target='28'>0</span></strong><span>States Covered</span></div>
-    </div>
-
-    <div class='test-track fade-up visible'>
-      <div class='test-card panel spot'><span class='quote-mark'>&#8220;</span><div class='stars'>&#9733;&#9733;&#9733;&#9733;&#9733;</div><p>Found my scholarship scheme in two minutes flat. Genuinely didn&#8217;t expect a government-linked app to be this smooth.</p><div class='test-user'><div class='avatar'>RS</div><div><strong>Rahul S.<span class='verified-badge'>&#10003; Verified</span></strong><br/><span class='mono' style='font-size:11.5px;'>Uttar Pradesh</span><span class='test-date'>Reviewed 1 week ago</span></div></div></div>
-      <div class='test-card panel spot'><span class='quote-mark'>&#8220;</span><div class='stars'>&#9733;&#9733;&#9733;&#9733;&#9733;</div><p>Finally an app that links directly to real government portals instead of sketchy third-party sites.</p><div class='test-user'><div class='avatar'>PM</div><div><strong>Priya M.<span class='verified-badge'>&#10003; Verified</span></strong><br/><span class='mono' style='font-size:11.5px;'>Maharashtra</span><span class='test-date'>Reviewed 3 days ago</span></div></div></div>
-      <div class='test-card panel spot'><span class='quote-mark'>&#8220;</span><div class='stars'>&#9733;&#9733;&#9733;&#9733;&#9733;</div><p>Simple, fast, and I trust it more than random search results. My whole family uses it now.</p><div class='test-user'><div class='avatar'>AK</div><div><strong>Arjun K.<span class='verified-badge'>&#10003; Verified</span></strong><br/><span class='mono' style='font-size:11.5px;'>Karnataka</span><span class='test-date'>Reviewed 2 weeks ago</span></div></div></div>
-      <div class='test-card panel spot'><span class='quote-mark'>&#8220;</span><div class='stars'>&#9733;&#9733;&#9733;&#9733;&#9733;</div><p>Helped me find PM Awas Yojana details so easily. Highly recommended to anyone confused by government sites.</p><div class='test-user'><div class='avatar'>NM</div><div><strong>Neha M.<span class='verified-badge'>&#10003; Verified</span></strong><br/><span class='mono' style='font-size:11.5px;'>Madhya Pradesh</span><span class='test-date'>Reviewed 5 days ago</span></div></div></div>
-      <div class='test-card panel spot'><span class='quote-mark'>&#8220;</span><div class='stars'>&#9733;&#9733;&#9733;&#9733;&#9733;</div><p>Very smooth experience. Downloaded my PAN card directly without any confusion or extra steps.</p><div class='test-user'><div class='avatar'>VJ</div><div><strong>Vikas J.<span class='verified-badge'>&#10003; Verified</span></strong><br/><span class='mono' style='font-size:11.5px;'>Delhi</span><span class='test-date'>Reviewed 4 days ago</span></div></div></div>
-      <div class='test-card panel spot'><span class='quote-mark'>&#8220;</span><div class='stars'>&#9733;&#9733;&#9733;&#9733;&#9733;</div><p>Great initiative! Language options like Tandav Bol are very helpful for my parents who aren&#8217;t comfortable with English.</p><div class='test-user'><div class='avatar'>SR</div><div><strong>Sneha R.<span class='verified-badge'>&#10003; Verified</span></strong><br/><span class='mono' style='font-size:11.5px;'>Gujarat</span><span class='test-date'>Reviewed 6 days ago</span></div></div></div>
-      <div class='test-card panel spot'><span class='quote-mark'>&#8220;</span><div class='stars'>&#9733;&#9733;&#9733;&#9733;&#9733;</div><p>My father renewed his ration card without any help from us. That alone makes this app worth it.</p><div class='test-user'><div class='avatar'>SD</div><div><strong>Sunita D.<span class='verified-badge'>&#10003; Verified</span></strong><br/><span class='mono' style='font-size:11.5px;'>Rajasthan</span><span class='test-date'>Reviewed 1 month ago</span></div></div></div>
-      <div class='test-card panel spot'><span class='quote-mark'>&#8220;</span><div class='stars'>&#9733;&#9733;&#9733;&#9733;&#9733;</div><p>AI Shalini answered my mother&#8217;s pension query faster than the helpline ever did. Impressive.</p><div class='test-user'><div class='avatar'>AT</div><div><strong>Ananya T.<span class='verified-badge'>&#10003; Verified</span></strong><br/><span class='mono' style='font-size:11.5px;'>West Bengal</span><span class='test-date'>Reviewed 5 days ago</span></div></div></div>
-      <div class='test-card panel spot'><span class='quote-mark'>&#8220;</span><div class='stars'>&#9733;&#9733;&#9733;&#9733;&#9734;</div><p>Great app overall &#8212; just wish the iOS version would launch soon so my whole office could switch.</p><div class='test-user'><div class='avatar'>MI</div><div><strong>Mohammed I.<span class='verified-badge'>&#10003; Verified</span></strong><br/><span class='mono' style='font-size:11.5px;'>Telangana</span><span class='test-date'>Reviewed 1 month ago</span></div></div></div>
-      <div class='test-card panel spot'><span class='quote-mark'>&#8220;</span><div class='stars'>&#9733;&#9733;&#9733;&#9733;&#9733;</div><p>Applied for my daughter&#8217;s scholarship in one sitting. No agents, no bribes, no waiting in line.</p><div class='test-user'><div class='avatar'>KP</div><div><strong>Kavita P.<span class='verified-badge'>&#10003; Verified</span></strong><br/><span class='mono' style='font-size:11.5px;'>Punjab</span><span class='test-date'>Reviewed 2 weeks ago</span></div></div></div>
-      <div class='test-card panel spot'><span class='quote-mark'>&#8220;</span><div class='stars'>&#9733;&#9733;&#9733;&#9733;&#9733;</div><p>Tandav Suraksha keeps all my documents encrypted. Honestly feels safer than my phone gallery.</p><div class='test-user'><div class='avatar'>RD</div><div><strong>Rohan D.<span class='verified-badge'>&#10003; Verified</span></strong><br/><span class='mono' style='font-size:11.5px;'>Bihar</span><span class='test-date'>Reviewed 4 days ago</span></div></div></div>
-      <div class='test-card panel spot'><span class='quote-mark'>&#8220;</span><div class='stars'>&#9733;&#9733;&#9733;&#9733;&#9734;</div><p>Loading is a bit slow on 3G in our area, but the service links are always accurate and up to date.</p><div class='test-user'><div class='avatar'>SN</div><div><strong>Suresh N.<span class='verified-badge'>&#10003; Verified</span></strong><br/><span class='mono' style='font-size:11.5px;'>Tamil Nadu</span><span class='test-date'>Reviewed 3 weeks ago</span></div></div></div>
-      <div class='test-card panel spot'><span class='quote-mark'>&#8220;</span><div class='stars'>&#9733;&#9733;&#9733;&#9733;&#9733;</div><p>Renewed my driving license without visiting the RTO office once. Saved me an entire day off work.</p><div class='test-user'><div class='avatar'>DV</div><div><strong>Deepak V.<span class='verified-badge'>&#10003; Verified</span></strong><br/><span class='mono' style='font-size:11.5px;'>Haryana</span><span class='test-date'>Reviewed 1 week ago</span></div></div></div>
-    </div>
-  </section>
-
-  <!-- FAQ -->
-  <section class='section container' id='faq' style='max-width:820px;'>
-    <div class='section-head fade-up visible'>
-      <div class='chip'><span class='dot'/> Support</div>
-      <h2 style='margin-top:14px;'>Frequently Asked Questions</h2>
-    </div>
-    <div class='faq-item fade-up'><div class='faq-q'>Is Tandav India a government app? <span class='faq-icon'>+</span></div><div class='faq-a'><p>Tandav India is an independent platform that organizes and links to official government services for easier public access.</p></div></div>
-    <div class='faq-item fade-up'><div class='faq-q'>Is the app free to use? <span class='faq-icon'>+</span></div><div class='faq-a'><p>Yes &#8212; downloading and using Tandav India is completely free.</p></div></div>
-    <div class='faq-item fade-up'><div class='faq-q'>Do you store my documents? <span class='faq-icon'>+</span></div><div class='faq-a'><p>We follow a privacy-first approach. Saved documents are encrypted and never shared without consent.</p></div></div>
-    <div class='faq-item fade-up'><div class='faq-q'>How to download the app? <span class='faq-icon'>+</span></div><div class='faq-a'><p>Go to the Google Play Store and search &quot;Tandav India&quot;.</p></div></div>
-  </section>
-
-  <!-- APP DOWNLOAD -->
-  <section class='section container' id='download'>
-    <div class='app-cta panel grad-outline fade-up visible' style='text-align: center; max-width: 700px; margin: 0 auto; box-shadow:0 15px 50px rgba(0,0,0,0.15);'>
-      <div class='chip' style='margin-bottom: 16px;'><span class='dot'/> Get the App</div>
-      <h2 style='margin-top: 10px;'>Carry Every Service in Your Pocket</h2>
-      <p style='margin-bottom: 32px;'>Free, secure, and built for every Indian citizen.</p>
-      <div class='store-row' style='justify-content: center;'>
-        <a class='store-btn btn-primary' href='https://play.google.com/store/apps/details?id=com.TandavIndia.App' style='color: #fff; background: var(--primary); border: none; font-weight: 600; padding: 14px 28px;' target='_blank'>
-          <svg fill='none' height='24' style='margin-right: 8px;' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'><path d='M4 2.5V21.5L20 12L4 2.5Z' fill='currentColor'/></svg> Google Play
-        </a>
-        <a class='store-btn' href='#' style='padding: 14px 28px; opacity: 0.6; cursor: not-allowed; transition:none;'>🍎 iOS &#8212; Coming Soon</a>
-      </div>
-    </div>
-  </section>
-
-</b:if>
-
-<!-- ==============================================
-     BLOGGER DYNAMIC ENGINE (PAGES & POSTS)
-     ============================================== -->
-<section class='container'>
-  <b:section class='main' id='main' maxwidgets='1' showaddelement='no'>
-    <b:widget id='Blog1' locked='true' title='Blog Posts' type='Blog' version='2' visible='true'>
-      <b:widget-settings>
-        <b:widget-setting name='showDateHeader'>false</b:widget-setting>
-        <b:widget-setting name='style.textcolor'>#ffffff</b:widget-setting>
-        <b:widget-setting name='showShareButtons'>true</b:widget-setting>
-        <b:widget-setting name='showCommentLink'>false</b:widget-setting>
-        <b:widget-setting name='style.urlcolor'>#ffffff</b:widget-setting>
-        <b:widget-setting name='showAuthor'>true</b:widget-setting>
-        <b:widget-setting name='style.linkcolor'>#ffffff</b:widget-setting>
-        <b:widget-setting name='style.unittype'>TextAndImage</b:widget-setting>
-        <b:widget-setting name='style.bgcolor'>#ffffff</b:widget-setting>
-        <b:widget-setting name='timestampLabel'/>
-        <b:widget-setting name='reactionsLabel'/>
-        <b:widget-setting name='showAuthorProfile'>false</b:widget-setting>
-        <b:widget-setting name='style.layout'>1x1</b:widget-setting>
-        <b:widget-setting name='showLabels'>true</b:widget-setting>
-        <b:widget-setting name='showLocation'>false</b:widget-setting>
-        <b:widget-setting name='postLabelsLabel'/>
-        <b:widget-setting name='showTimestamp'>true</b:widget-setting>
-        <b:widget-setting name='postsPerAd'>1</b:widget-setting>
-        <b:widget-setting name='showBacklinks'>false</b:widget-setting>
-        <b:widget-setting name='style.bordercolor'>#ffffff</b:widget-setting>
-        <b:widget-setting name='showInlineAds'>false</b:widget-setting>
-        <b:widget-setting name='showReactions'>false</b:widget-setting>
-      </b:widget-settings>
-      <b:includable id='main' var='top'>
-        
-        <!-- SINGLE ITEM VIEW (Applies to both Static Pages AND Blog Posts) -->
-        <b:if cond='data:view.isSingleItem'>
-          <b:loop values='data:posts' var='post'>
-            <div class='panel grad-outline post-outer-container fade-up visible' style='padding:48px; margin-top: 140px; margin-bottom: 80px; box-shadow: 0 20px 50px rgba(0,0,0,0.15);'>
-              <h1 class='post-title'><data:post.title/></h1>
-              
-              <!-- Only show date on actual Blog Posts (Hide on Static Pages like Privacy Policy) -->
-              <b:if cond='data:view.isPost'>
-                <div style='margin-bottom: 24px; color: var(--text-soft); font-family: var(--font-mono); font-size: 13px; border-bottom: 1px solid var(--line); padding-bottom: 16px;'>
-                  📅 Published: <data:post.date/>
+    <header class="sticky top-0 z-50 glass-panel border-b border-slate-800/80 px-4 sm:px-8 py-4">
+        <div class="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-4">
+            <div class="flex items-center gap-3 cursor-pointer" onclick="resetToHome()">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-orange-500 to-amber-600 flex items-center justify-center font-black text-white text-xl glow-orange">JS</div>
+                <div>
+                    <div class="text-orange-500 font-extrabold tracking-widest text-[10px] uppercase">Mahapanchayat Network</div>
+                    <h1 class="text-xl sm:text-2xl font-extrabold tracking-tight">JAN SHAKTI <span class="text-slate-500 text-sm font-normal">| Sovereign Ledger</span></h1>
                 </div>
-              </b:if>
-
-              <div class='post-body'>
-                <data:post.body/>
-              </div>
             </div>
-          </b:loop>
-        </b:if>
-
-        <!-- MULTIPLE ITEMS VIEW (Applies to Homepage Post Grid & Archive/Labels) -->
-        <b:if cond='data:view.isMultipleItems'>
-          <div class='section container' id='updates' style='padding-top: 40px; border-top: 1px solid var(--line);'>
-            <div class='section-head fade-up visible'>
-              <div class='chip'><span class='dot'/> Updates</div>
-              <h2 style='margin-top:14px;'>Latest Notifications</h2>
+            <div class="flex items-center gap-4">
+                <div class="hidden md:flex items-center gap-2 bg-slate-900/90 border border-slate-800 px-4 py-2 rounded-xl text-xs">
+                    <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                    <span class="text-slate-400">Ledger Node:</span>
+                    <span class="text-cyan-400 font-mono font-bold">ACTIVE (0ms sync)</span>
+                </div>
+                <button onclick="openRaiseModal()" class="bg-gradient-to-r from-orange-600 to-amber-600 hover:from-orange-500 hover:to-amber-500 text-white font-bold px-5 py-2.5 rounded-xl shadow-lg shadow-orange-600/20 transition-all text-sm flex items-center gap-2">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
+                    Raise Local Grievance
+                </button>
             </div>
-            
-            <div class='bento-grid stagger'>
-              <b:loop values='data:posts' var='post'>
-                <article class='bento-card panel grad-outline spot fade-up visible' style='display:flex; flex-direction:column; justify-content:space-between;'>
-                  <a expr:href='data:post.url' style='flex:1;'>
-                    <h3 style='font-size:18px;margin-bottom:10px; transition:color 0.3s ease;'><data:post.title/></h3>
-                    <p style='font-size:13.5px; margin-bottom: 20px;'><data:post.snippet/></p>
-                  </a>
-                  <a class='mono' expr:href='data:post.url' style='font-size:12px; color:var(--primary); font-weight:600; text-transform:uppercase;'>Read Article &#8594;</a>
-                </article>
-              </b:loop>
-            </div>
-            
-            <b:include name='postPagination'/>
-          </div>
-        </b:if>
-      </b:includable>
-      <b:includable id='aboutPostAuthor'/>
-      <b:includable id='addComments'/>
-      <b:includable id='blogThisShare'/>
-      <b:includable id='bylineByName' var='byline'/>
-      <b:includable id='bylineRegion' var='regionItems'/>
-      <b:includable id='commentAuthorAvatar'/>
-      <b:includable id='commentDeleteIcon' var='comment'/>
-      <b:includable id='commentForm' var='post'/>
-      <b:includable id='commentFormIframeSrc' var='post'/>
-      <b:includable id='commentItem' var='comment'/>
-      <b:includable id='commentList' var='comments'/>
-      <b:includable id='commentPicker' var='post'/>
-      <b:includable id='comments' var='post'/>
-      <b:includable id='commentsLink'/>
-      <b:includable id='commentsLinkIframe'/>
-      <b:includable id='commentsTitle'/>
-      <b:includable id='defaultAdUnit'/>
-      <b:includable id='emailPostIcon'/>
-      <b:includable id='facebookShare'/>
-      <b:includable id='feedLinks'/>
-      <b:includable id='feedLinksBody' var='links'/>
-      <b:includable id='footerBylines'/>
-      <b:includable id='googlePlusShare'/>
-      <b:includable id='headerByline'/>
-      <b:includable id='homePageLink'>
-        <a class='home-link btn btn-outline' expr:href='data:blog.homepageUrl'><data:messages.home/></a>
-      </b:includable>
-      <b:includable id='iframeComments' var='post'/>
-      <b:includable id='inlineAd' var='post'/>
-      <b:includable id='linkShare'/>
-      <b:includable id='nextPageLink'>
-        <a class='blog-pager-older-link btn btn-primary' expr:href='data:olderPageUrl' expr:id='data:widget.instanceId + &quot;_blog-pager-older-link&quot;' expr:title='data:messages.olderPosts'>
-          Older Posts
-        </a>
-      </b:includable>
-      <b:includable id='otherSharingButton'/>
-      <b:includable id='platformShare'/>
-      <b:includable id='post' var='post'/>
-      <b:includable id='postAuthor'/>
-      <b:includable id='postBody' var='post'/>
-      <b:includable id='postBodySnippet' var='post'/>
-      <b:includable id='postCommentsAndAd' var='post'/>
-      <b:includable id='postCommentsLink'/>
-      <b:includable id='postFooter' var='post'/>
-      <b:includable id='postFooterAuthorProfile' var='post'/>
-      <b:includable id='postHeader' var='post'/>
-      <b:includable id='postJumpLink' var='post'/>
-      <b:includable id='postLabels'/>
-      <b:includable id='postLocation'/>
-      <b:includable id='postMeta' var='post'/>
-      <b:includable id='postPagination'>
-        <div class='blog-pager container' id='blog-pager'>
-          <b:include cond='data:newerPageUrl' name='previousPageLink'/>
-          <b:include cond='data:olderPageUrl' name='nextPageLink'/>
-          <b:include cond='data:view.url != data:blog.homepageUrl' name='homePageLink'/>
         </div>
-      </b:includable>
-      <b:includable id='postReactions'/>
-      <b:includable id='postShareButtons'/>
-      <b:includable id='postTimestamp'/>
-      <b:includable id='postTitle' var='post'/>
-      <b:includable id='previousPageLink'>
-        <a class='blog-pager-newer-link btn btn-primary' expr:href='data:newerPageUrl' expr:id='data:widget.instanceId + &quot;_blog-pager-newer-link&quot;' expr:title='data:messages.newerPosts'>
-          Newer Posts
-        </a>
-      </b:includable>
-      <b:includable id='sharingButton'/>
-      <b:includable id='sharingButtonContent'/>
-      <b:includable id='sharingButtons'/>
-      <b:includable id='sharingButtonsMenu'/>
-      <b:includable id='sharingPlatformIcon'/>
-      <b:includable id='threadedCommentForm' var='post'/>
-      <b:includable id='threadedCommentJs' var='post'/>
-      <b:includable id='threadedComments' var='post'/>
-      <b:includable id='tooltipCss'/>
-    </b:widget>
-  </b:section>
-</section>
+    </header>
 
-<!-- Footer -->
-<footer>
-  <div class='container'>
-    <div class='footer-grid' style='grid-template-columns: 1fr; text-align: center; max-width: 600px; margin: 0 auto 40px;'>
-      <div class='footer-col'>
-        <div class='logo' style='justify-content: center; margin-bottom:16px;'>
-          <img alt='Tandav India Logo' src='https://dfgdgeqgetgeqtggqergqegh.wordpress.com/wp-content/uploads/2026/07/san-gamez-logo-4.png'/>
-          Tandav<span class='text-gradient'>India</span>
+    <main class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-8 py-10">
+        <div class="text-center max-w-3xl mx-auto mb-12">
+            <span class="bg-orange-500/10 text-orange-400 text-xs font-bold px-3.5 py-1.5 rounded-full border border-orange-500/20 uppercase tracking-widest">Decentralized Civic Ecosystem</span>
+            <h2 class="text-4xl sm:text-5xl font-black mt-4 mb-4 tracking-tight">Direct Democracy at Your <span class="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-amber-500">Pincode Level</span></h2>
+            <p class="text-slate-400 text-base sm:text-lg">Enter your 6-digit postal code to explore neighborhood problems, verify local petitions, track resolution milestones, and hold local authorities accountable.</p>
         </div>
-        <p>One INDIA One App. Empowering citizens with seamless, verified access to government services.</p>
-      </div>
+
+        <!-- Search Bar Card -->
+        <div class="max-w-2xl mx-auto mb-14">
+            <div class="glass-panel p-3 rounded-2xl shadow-2xl flex flex-col sm:flex-row gap-3">
+                <div class="relative flex-1">
+                    <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-slate-500">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+                    </div>
+                    <input type="text" id="pincodeInput" maxlength="6" placeholder="Enter 6-Digit Pincode (e.g. 110001)" 
+                           class="w-full bg-slate-950/80 border border-slate-800 rounded-xl pl-12 pr-4 py-4 text-lg text-white font-mono placeholder:text-slate-600 focus:outline-none focus:border-orange-500 transition-all">
+                </div>
+                <button onclick="loadPincodeLedger()" class="bg-orange-600 hover:bg-orange-700 text-white font-bold px-8 py-4 rounded-xl transition-all shadow-lg shadow-orange-600/30 flex items-center justify-center gap-2 text-base shrink-0">
+                    <span>Inspect Grid</span>
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+                </button>
+            </div>
+            <!-- Quick Pincode Pills -->
+            <div class="flex flex-wrap items-center justify-center gap-2 mt-4 text-xs">
+                <span class="text-slate-500">Try Sample Zones:</span>
+                <button onclick="quickSelectPin('110001')" class="bg-slate-900 hover:bg-slate-800 text-slate-300 border border-slate-800 px-3 py-1 rounded-lg font-mono">110001 (New Delhi)</button>
+                <button onclick="quickSelectPin('400001')" class="bg-slate-900 hover:bg-slate-800 text-slate-300 border border-slate-800 px-3 py-1 rounded-lg font-mono">400001 (Mumbai)</button>
+                <button onclick="quickSelectPin('560001')" class="bg-slate-900 hover:bg-slate-800 text-slate-300 border border-slate-800 px-3 py-1 rounded-lg font-mono">560001 (Bengaluru)</button>
+            </div>
+        </div>
+
+        <div id="feedSection" class="hidden">
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-8 pb-6 border-b border-slate-800/80">
+                <div>
+                    <div class="flex items-center gap-3">
+                        <h3 id="activePinTitle" class="text-2xl sm:text-3xl font-extrabold">Pincode: 110001</h3>
+                        <span id="issueCountBadge" class="bg-orange-500/20 text-orange-400 font-bold text-xs px-3 py-1 rounded-full border border-orange-500/30">0 Active Reports</span>
+                    </div>
+                    <p class="text-slate-400 text-sm mt-1">Live peer-verified complaints & civic proposals registered by residents.</p>
+                </div>
+                <div class="flex items-center gap-3 w-full md:w-auto">
+                    <select id="sortFilter" onchange="filterAndSortIssues()" class="bg-slate-900 border border-slate-800 rounded-xl px-4 py-2.5 text-sm text-slate-300 focus:outline-none focus:border-orange-500">
+                        <option value="votes">Most Vouches</option>
+                        <option value="recent">Most Recent</option>
+                        <option value="urgent">Urgent Priority</option>
+                    </select>
+                    <button onclick="openRaiseModal()" class="bg-slate-800 hover:bg-orange-600 text-white text-sm font-bold px-4 py-2.5 rounded-xl border border-slate-700 transition-all whitespace-nowrap">
+                        + Raise Here
+                    </button>
+                </div>
+            </div>
+
+            <!-- Issues Grid -->
+            <div id="ledgerFeed" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Dynamic cards populated here -->
+            </div>
+        </div>
+
+        <!-- Initial Placeholder State -->
+        <div id="emptyState" class="text-center py-24 glass-panel rounded-3xl border border-dashed border-slate-800">
+            <div class="w-16 h-16 rounded-2xl bg-slate-900 border border-slate-800 flex items-center justify-center mx-auto text-orange-500 mb-4 text-2xl">
+                📍
+            </div>
+            <h3 class="text-xl font-bold mb-2">No Pincode Selected</h3>
+            <p class="text-slate-500 text-sm max-w-md mx-auto mb-6">Enter your 6-digit postal code above to inspect local grievances, vouches, and community discussions in your neighborhood.</p>
+            <button onclick="quickSelectPin('110001')" class="bg-slate-900 hover:bg-slate-800 text-orange-400 font-semibold text-sm px-6 py-3 rounded-xl border border-slate-800 transition-all">
+                Load Sample Pincode (110001)
+            </button>
+        </div>
+    </main>
+
+    <div id="raiseModal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm hidden items-center justify-center p-4 overflow-y-auto">
+        <div class="glass-panel max-w-xl w-full p-6 sm:p-8 rounded-3xl border border-slate-700/80 shadow-2xl relative animate-in fade-in zoom-in duration-200">
+            <button onclick="closeRaiseModal()" class="absolute top-6 right-6 text-slate-400 hover:text-white bg-slate-900/80 hover:bg-slate-800 p-2 rounded-xl transition-all">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+            </button>
+
+            <div class="mb-6">
+                <span class="text-orange-500 font-bold text-xs uppercase tracking-widest">Sovereign Petition</span>
+                <h3 class="text-2xl font-black mt-1">Raise a Local Grievance</h3>
+                <p class="text-slate-400 text-xs sm:text-sm mt-1">Your complaint is instantly broadcasted to residents in your pincode for collective vouching.</p>
+            </div>
+
+            <form id="complaintForm" onsubmit="submitComplaint(event)" class="space-y-4">
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-400 uppercase mb-1.5">Pincode (6-digit)*</label>
+                        <input type="text" id="modalPin" maxlength="6" required placeholder="e.g. 110001" 
+                               class="w-full bg-slate-900 border border-slate-800 rounded-xl px-4 py-3 text-sm font-mono focus:outline-none focus:border-orange-500">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-400 uppercase mb-1.5">Category*</label>
+                        <select id="modalCategory" class="w-full bg-slate-900 border border-slate-800 rounded-xl px-4 py-3 text-sm text-slate-300 focus:outline-none focus:border-orange-500">
+                            <option value="Roads & Infrastructure">Roads & Infrastructure</option>
+                            <option value="Water & Sanitation">Water & Sanitation</option>
+                            <option value="Electricity & Power">Electricity & Power</option>
+                            <option value="Public Safety & Lighting">Public Safety & Lighting</option>
+                            <option value="Garbage & Waste">Garbage & Waste</option>
+                            <option value="Public Health">Public Health</option>
+                            <option value="Other Civic Issue">Other Civic Issue</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-semibold text-slate-400 uppercase mb-1.5">Grievance Title*</label>
+                    <input type="text" id="modalTitle" required placeholder="e.g. Broken sewage pipeline near Main Market" 
+                           class="w-full bg-slate-900 border border-slate-800 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-orange-500">
+                </div>
+
+                <div>
+                    <label class="block text-xs font-semibold text-slate-400 uppercase mb-1.5">Detailed Description*</label>
+                    <textarea id="modalDesc" rows="4" required placeholder="Describe the issue, exact landmark, duration, and impact on local residents..." 
+                              class="w-full bg-slate-900 border border-slate-800 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-orange-500 resize-none"></textarea>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-400 uppercase mb-1.5">Urgency Level</label>
+                        <select id="modalUrgency" class="w-full bg-slate-900 border border-slate-800 rounded-xl px-4 py-3 text-sm text-slate-300 focus:outline-none focus:border-orange-500">
+                            <option value="normal">Normal Priority</option>
+                            <option value="urgent">Urgent / Hazard</option>
+                            <option value="critical">Critical Emergency</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-400 uppercase mb-1.5">Your Name / Citizen ID*</label>
+                        <input type="text" id="modalAuthor" required placeholder="e.g. Rajesh Kumar" 
+                               class="w-full bg-slate-900 border border-slate-800 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-orange-500">
+                    </div>
+                </div>
+
+                <div class="pt-4 flex items-center justify-end gap-3">
+                    <button type="button" onclick="closeRaiseModal()" class="px-5 py-3 rounded-xl border border-slate-800 hover:bg-slate-900 text-sm font-semibold transition-all">Cancel</button>
+                    <button type="submit" class="bg-gradient-to-r from-orange-600 to-amber-600 hover:from-orange-500 hover:to-amber-500 text-white font-bold px-8 py-3 rounded-xl shadow-lg shadow-orange-600/30 text-sm transition-all">
+                        Broadcast to Pincode
+                    </button>
+                </div>
+            </form>
+        </div>
     </div>
-    <div class='footer-bottom'>
-      <p>&#169; <span id='year'/> Tandav India. All rights reserved. Not affiliated with the Government of India.</p>
+
+    <div id="detailModal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm hidden items-center justify-center p-4 overflow-y-auto">
+        <div class="glass-panel max-w-2xl w-full p-6 sm:p-8 rounded-3xl border border-slate-700/80 shadow-2xl relative max-h-[90vh] flex flex-col">
+            <button onclick="closeDetailModal()" class="absolute top-6 right-6 text-slate-400 hover:text-white bg-slate-900/80 hover:bg-slate-800 p-2 rounded-xl transition-all">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+            </button>
+            <div id="detailContent" class="overflow-y-auto flex-1 pr-2 space-y-6">
+                <!-- Populated dynamically -->
+            </div>
+        </div>
     </div>
-  </div>
-</footer>
 
-<button aria-label='Back to top' class='back-top' id='backTop'>&#8593;</button>
+    <!-- Custom Notification Toast -->
+    <div id="toast" class="fixed bottom-6 right-6 z-50 transform translate-y-24 opacity-0 transition-all duration-300 glass-panel border border-orange-500/30 px-6 py-4 rounded-2xl shadow-2xl flex items-center gap-3">
+        <div id="toastIcon" class="w-8 h-8 rounded-full bg-orange-500/20 text-orange-400 flex items-center justify-center font-bold">✓</div>
+        <div>
+            <h4 id="toastTitle" class="text-sm font-bold">Action Successful</h4>
+            <p id="toastMsg" class="text-xs text-slate-400">Ledger successfully updated.</p>
+        </div>
+    </div>
 
-<script>
-//<![CDATA[
-document.addEventListener('DOMContentLoaded', function () {
+    <footer class="border-t border-slate-800/80 bg-slate-950 py-8 px-4 sm:px-8 mt-16">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-slate-500">
+            <p>© 2026 Jan Shakti Sovereign Ledger. Empowering Indian Citizens through Pincode Transparency.</p>
+            <div class="flex items-center gap-6">
+                <span class="hover:text-slate-300 cursor-pointer">Protocol Specs</span>
+                <span class="hover:text-slate-300 cursor-pointer">Mahapanchayat Governance</span>
+                <span class="hover:text-slate-300 cursor-pointer">Open Ledger API</span>
+            </div>
+        </div>
+    </footer>
 
-  var yearEl = document.getElementById('year');
-  if (yearEl) yearEl.textContent = new Date().getFullYear();
+    <script>
+        // Initial Mock Database for Demo Pincodes
+        const DEFAULT_LEDGER_DATA = {
+            "110001": [
+                {
+                    id: "js-101",
+                    pincode: "110001",
+                    title: "Severe Water Contamination near Connaught Place Outer Circle",
+                    description: "Tap water has been coming out muddy and smelling like sulfur for the past 3 days. Multiple families in block C reporting stomach infections.",
+                    category: "Water & Sanitation",
+                    urgency: "critical",
+                    status: "investigating",
+                    author: "Vikram Malhotra",
+                    timestamp: Date.now() - 3600000 * 12,
+                    votes: 42,
+                    vouchedUsers: ["Vikram M.", "Sunita R.", "Amit K."],
+                    comments: [
+                        { author: "Sunita Sharma", text: "Confirmed! We filed a complaint with Jal Board as well (Ref #98234).", time: "4 hours ago" },
+                        { author: "Rajesh Verma", text: "We need someone to take water samples to the municipal lab.", time: "1 hour ago" }
+                    ]
+                },
+                {
+                    id: "js-102",
+                    pincode: "110001",
+                    title: "Non-functional High Mast Street Lights at Janpath Lane",
+                    description: "All 5 street lights have been dead for a week creating dark spots prone to snatching incidents after 8 PM.",
+                    category: "Public Safety & Lighting",
+                    urgency: "urgent",
+                    status: "reported",
+                    author: "Meenakshi Iyer",
+                    timestamp: Date.now() - 3600000 * 36,
+                    votes: 28,
+                    vouchedUsers: ["Meenakshi I."],
+                    comments: [
+                        { author: "Ankit Gupta", text: "The local electrician said transformer fuse blew.", time: "1 day ago" }
+                    ]
+                }
+            ],
+            "400001": [
+                {
+                    id: "js-201",
+                    pincode: "400001",
+                    title: "Huge Pothole outside Horniman Circle Parking Exit",
+                    description: "A deep 2-foot crater has formed after recent rains causing bike skids during peak office hours.",
+                    category: "Roads & Infrastructure",
+                    urgency: "urgent",
+                    status: "acknowledged",
+                    author: "Zubin Mehta",
+                    timestamp: Date.now() - 3600000 * 20,
+                    votes: 56,
+                    vouchedUsers: ["Zubin M.", "Pooja D."],
+                    comments: [
+                        { author: "Rohan Shetty", text: "Municipal corporation tagged it for repair next week.", time: "6 hours ago" }
+                    ]
+                }
+            ],
+            "560001": [
+                {
+                    id: "js-301",
+                    pincode: "560001",
+                    title: "Garbage Dumping Unattended near MG Road Metro Station",
+                    description: "Commercial vendors are dumping organic and plastic waste directly on the pedestrian pathway blocking walkers.",
+                    category: "Garbage & Waste",
+                    urgency: "normal",
+                    status: "reported",
+                    author: "Kavitha Rao",
+                    timestamp: Date.now() - 3600000 * 18,
+                    votes: 31,
+                    vouchedUsers: ["Kavitha R."],
+                    comments: []
+                }
+            ]
+        };
 
-  /* sticky header */
-  var header = document.getElementById('header');
-  var scanBar = document.getElementById('scanBar');
-  var backTop = document.getElementById('backTop');
-  window.addEventListener('scroll', function(){
-    if (window.scrollY > 40) header.classList.add('scrolled'); else header.classList.remove('scrolled');
-    var h = document.documentElement;
-    var pct = h.scrollTop / (h.scrollHeight - h.clientHeight) * 100;
-    if (scanBar) scanBar.style.width = pct + '%';
-    if (h.scrollTop > 500) { if(backTop) backTop.classList.add('show'); } else { if(backTop) backTop.classList.remove('show'); }
-  });
-  if(backTop) backTop.addEventListener('click', function(){ window.scrollTo({top:0, behavior:'smooth'}); });
-
-  /* mobile menu */
-  var panel = document.getElementById('mobilePanel');
-  var burger = document.getElementById('burgerBtn');
-  var closeBurger = document.getElementById('closeBurger');
-  if (burger) burger.addEventListener('click', function(){ panel.classList.add('open'); });
-  if (closeBurger) closeBurger.addEventListener('click', function(){ panel.classList.remove('open'); });
-  if (panel) panel.querySelectorAll('a').forEach(function(a){ a.addEventListener('click', function(){ panel.classList.remove('open'); }); });
-
-  /* theme toggle */
-  var root = document.documentElement;
-  var themeToggle = document.getElementById('themeToggle');
-  if (themeToggle) {
-    themeToggle.addEventListener('click', function(){
-      var isLight = root.getAttribute('data-theme') === 'light';
-      if (isLight) root.removeAttribute('data-theme'); else root.setAttribute('data-theme','light');
-    });
-  }
-
-  /* fade-up reveal */
-  var reveals = document.querySelectorAll('.fade-up:not(.visible)');
-  if (reveals.length > 0) {
-    var io = new IntersectionObserver(function(entries){
-      entries.forEach(function(e){ if (e.isIntersecting) e.target.classList.add('visible'); });
-    }, { threshold: 0.15 });
-    reveals.forEach(function(el){ io.observe(el); });
-  }
-
-  /* animated counters + progress rings */
-  var counters = document.querySelectorAll('.counter');
-  var ringObserved = false;
-  if (counters.length > 0) {
-    var cio = new IntersectionObserver(function(entries){
-      entries.forEach(function(e){
-        if (e.isIntersecting && !ringObserved) {
-          ringObserved = true;
-          counters.forEach(function(c){
-            var target = parseInt(c.getAttribute('data-target'), 10);
-            var cur = 0;
-            var step = Math.max(1, Math.round(target / 60));
-            var t = setInterval(function(){
-              cur += step;
-              if (cur >= target) { cur = target; clearInterval(t); }
-              c.textContent = cur;
-            }, 20);
-          });
-          document.querySelectorAll('.ring-fg').forEach(function(ring){
-            var pct = parseInt(ring.getAttribute('data-pct'), 10) || 100;
-            var circumference = 264;
-            var offset = circumference - (pct/100) * circumference;
-            setTimeout(function(){ ring.style.strokeDashoffset = offset; }, 100);
-          });
+        // Load data from localStorage or initialize with default
+        function getStorageData() {
+            const stored = localStorage.getItem('janshakti_ledger');
+            if (!stored) {
+                localStorage.setItem('janshakti_ledger', JSON.stringify(DEFAULT_LEDGER_DATA));
+                return DEFAULT_LEDGER_DATA;
+            }
+            try {
+                return JSON.parse(stored);
+            } catch(e) {
+                return DEFAULT_LEDGER_DATA;
+            }
         }
-      });
-    }, { threshold: 0.3 });
-    var statsGrid = document.querySelector('.stats-grid');
-    if (statsGrid) cio.observe(statsGrid);
-  }
 
-  /* faq accordion */
-  document.querySelectorAll('.faq-item').forEach(function(item){
-    var q = item.querySelector('.faq-q');
-    if (q) {
-      q.addEventListener('click', function(){
-        var open = item.classList.contains('open');
-        document.querySelectorAll('.faq-item').forEach(function(i){ i.classList.remove('open'); });
-        if (!open) item.classList.add('open');
-      });
-    }
-  });
-
-  /* 3D tilt on bento cards (pointer devices only) */
-  if (window.matchMedia('(pointer:fine)').matches) {
-    document.querySelectorAll('.tilt').forEach(function(card){
-      card.addEventListener('mousemove', function(e){
-        var r = card.getBoundingClientRect();
-        var x = e.clientX - r.left, y = e.clientY - r.top;
-        var rx = ((y / r.height) - 0.5) * -10;
-        var ry = ((x / r.width) - 0.5) * 10;
-        card.style.transform = 'perspective(800px) rotateX(' + rx + 'deg) rotateY(' + ry + 'deg) translateY(-8px) scale(1.02)';
-        card.style.setProperty('--mx', x + 'px');
-        card.style.setProperty('--my', y + 'px');
-      });
-      card.addEventListener('mouseleave', function(){ card.style.transform = ''; });
-    });
-    document.querySelectorAll('.spot').forEach(function(card){
-      if (card.classList.contains('tilt')) return;
-      card.addEventListener('mousemove', function(e){
-        var r = card.getBoundingClientRect();
-        card.style.setProperty('--mx', (e.clientX - r.left) + 'px');
-        card.style.setProperty('--my', (e.clientY - r.top) + 'px');
-      });
-    });
-  }
-
-  /* hero network canvas */
-  var canvas = document.getElementById('netCanvas');
-  if (canvas && canvas.getContext) {
-    var ctx = canvas.getContext('2d');
-    var hero = canvas.parentElement;
-    var W, H, nodes = [];
-    var NODE_COUNT = window.innerWidth < 700 ? 30 : 65;
-
-    function resize(){
-      W = canvas.width = hero.offsetWidth;
-      H = canvas.height = hero.offsetHeight;
-    }
-    function makeNodes(){
-      nodes = [];
-      for (var i=0;i<NODE_COUNT;i++){
-        nodes.push({
-          x: Math.random()*W, y: Math.random()*H,
-          vx: (Math.random()-0.5)*0.4, vy: (Math.random()-0.5)*0.4
-        });
-      }
-    }
-    function step(){
-      ctx.clearRect(0,0,W,H);
-      for (var i=0;i<nodes.length;i++){
-        var n = nodes[i];
-        n.x += n.vx; n.y += n.vy;
-        if (n.x < 0 || n.x > W) n.vx *= -1;
-        if (n.y < 0 || n.y > H) n.vy *= -1;
-      }
-      for (var a=0; a<nodes.length; a++){
-        for (var b=a+1; b<nodes.length; b++){
-          var dx = nodes[a].x-nodes[b].x, dy = nodes[a].y-nodes[b].y;
-          var dist = Math.sqrt(dx*dx+dy*dy);
-          if (dist < 150){
-            ctx.strokeStyle = 'rgba(255,106,0,' + (0.2*(1-dist/150)) + ')';
-            ctx.lineWidth = 1.5;
-            ctx.beginPath();
-            ctx.moveTo(nodes[a].x, nodes[a].y);
-            ctx.lineTo(nodes[b].x, nodes[b].y);
-            ctx.stroke();
-          }
+        function saveStorageData(data) {
+            localStorage.setItem('janshakti_ledger', JSON.stringify(data));
         }
-      }
-      for (var i2=0;i2<nodes.length;i2++){
-        ctx.fillStyle = 'rgba(37,99,235,0.6)';
-        ctx.beginPath();
-        ctx.arc(nodes[i2].x, nodes[i2].y, 2, 0, Math.PI*2);
-        ctx.fill();
-      }
-      requestAnimationFrame(step);
-    }
-    resize();
-    makeNodes();
-    step();
-    window.addEventListener('resize', function(){ resize(); makeNodes(); });
-  }
-});
-//]]>
-</script>
 
+        let currentActivePin = null;
+
+        function quickSelectPin(pin) {
+            document.getElementById('pincodeInput').value = pin;
+            loadPincodeLedger();
+        }
+
+        function resetToHome() {
+            document.getElementById('pincodeInput').value = '';
+            document.getElementById('feedSection').classList.add('hidden');
+            document.getElementById('emptyState').classList.remove('hidden');
+            currentActivePin = null;
+        }
+
+        function loadPincodeLedger() {
+            const pin = document.getElementById('pincodeInput').value.trim();
+            if (!pin || pin.length !== 6 || isNaN(pin)) {
+                showToast("Invalid Pincode", "Please enter a valid 6-digit Indian postal code.", "⚠️");
+                return;
+            }
+
+            currentActivePin = pin;
+            document.getElementById('emptyState').classList.add('hidden');
+            document.getElementById('feedSection').classList.remove('hidden');
+            document.getElementById('activePinTitle').textContent = `Pincode: ${pin}`;
+
+            renderFeed();
+        }
+
+        function renderFeed() {
+            if (!currentActivePin) return;
+            const db = getStorageData();
+            let issues = db[currentActivePin] || [];
+
+            const sortBy = document.getElementById('sortFilter').value;
+            if (sortBy === 'votes') {
+                issues.sort((a, b) => b.votes - a.votes);
+            } else if (sortBy === 'recent') {
+                issues.sort((a, b) => b.timestamp - a.timestamp);
+            } else if (sortBy === 'urgent') {
+                const priorityOrder = { 'critical': 3, 'urgent': 2, 'normal': 1 };
+                issues.sort((a, b) => (priorityOrder[b.urgency] || 1) - (priorityOrder[a.urgency] || 1));
+            }
+
+            document.getElementById('issueCountBadge').textContent = `${issues.length} Active Report${issues.length === 1 ? '' : 's'}`;
+
+            const feedContainer = document.getElementById('ledgerFeed');
+            if (issues.length === 0) {
+                feedContainer.innerHTML = `
+                    <div class="col-span-full text-center py-20 glass-panel rounded-3xl">
+                        <div class="text-4xl mb-3">🛡️</div>
+                        <h4 class="text-lg font-bold">No active grievances in Pincode ${currentActivePin}</h4>
+                        <p class="text-slate-500 text-sm mt-1 mb-6">Be the first citizen to report an issue and initiate community action.</p>
+                        <button onclick="openRaiseModal()" class="bg-orange-600 hover:bg-orange-700 text-white font-bold px-6 py-3 rounded-xl text-sm transition-all">
+                            Raise First Grievance
+                        </button>
+                    </div>
+                `;
+                return;
+            }
+
+            feedContainer.innerHTML = issues.map(issue => {
+                let statusColor = 'bg-amber-500/10 text-amber-400 border-amber-500/20';
+                if (issue.status === 'investigating') statusColor = 'bg-cyan-500/10 text-cyan-400 border-cyan-500/20';
+                if (issue.status === 'resolved') statusColor = 'bg-emerald-500/10 text-emerald-400 border-emerald-500/20';
+                
+                let urgencyBadge = '';
+                if (issue.urgency === 'critical') urgencyBadge = '<span class="bg-rose-500/10 text-rose-400 border border-rose-500/20 text-[10px] font-bold px-2.5 py-0.5 rounded-full uppercase">Critical</span>';
+                else if (issue.urgency === 'urgent') urgencyBadge = '<span class="bg-orange-500/10 text-orange-400 border border-orange-500/20 text-[10px] font-bold px-2.5 py-0.5 rounded-full uppercase">Urgent</span>';
+
+                const timeAgo = getTimeAgo(issue.timestamp);
+
+                return `
+                    <div class="grid-card p-6 rounded-2xl flex flex-col justify-between cursor-pointer group" onclick="openDetailView('${issue.id}')">
+                        <div>
+                            <div class="flex justify-between items-start gap-2 mb-3">
+                                <span class="${statusColor} text-[10px] font-extrabold px-3 py-1 rounded-full border uppercase tracking-wider">
+                                    ${issue.status}
+                                </span>
+                                <div class="flex items-center gap-1.5">
+                                    ${urgencyBadge}
+                                    <span class="text-slate-500 text-xs">${timeAgo}</span>
+                                </div>
+                            </div>
+                            <span class="text-xs text-orange-400 font-semibold uppercase tracking-wider">${issue.category}</span>
+                            <h4 class="text-lg font-bold mt-1 mb-2 group-hover:text-orange-400 transition-colors line-clamp-2">${issue.title}</h4>
+                            <p class="text-slate-400 text-xs sm:text-sm line-clamp-3 mb-6">${issue.description}</p>
+                        </div>
+
+                        <div>
+                            <div class="flex items-center justify-between text-xs mb-2 text-slate-400">
+                                <span>Reported by <strong class="text-slate-300">${issue.author}</strong></span>
+                                <span class="text-orange-400 font-bold">${issue.votes} Vouches</span>
+                            </div>
+                            <div class="flex items-center gap-2 mb-4">
+                                <div class="flex-1 bg-slate-900 h-2 rounded-full overflow-hidden border border-slate-800">
+                                    <div class="bg-gradient-to-r from-orange-500 to-amber-500 h-full rounded-full transition-all duration-500" style="width: ${Math.min(100, (issue.votes / 50) * 100)}%"></div>
+                                </div>
+                                <span class="text-[10px] text-slate-500 font-mono">Goal: 50</span>
+                            </div>
+                            <div class="flex items-center gap-2" onclick="event.stopPropagation()">
+                                <button onclick="vouchIssue('${issue.id}')" class="flex-1 bg-slate-900 hover:bg-orange-600 hover:text-white text-slate-200 border border-slate-800 hover:border-orange-600 py-2.5 rounded-xl font-bold text-xs transition-all flex items-center justify-center gap-2">
+                                    <svg class="w-4 h-4 text-orange-500 group-hover:text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                                    Vouch for Issue
+                                </button>
+                                <button onclick="openDetailView('${issue.id}')" class="bg-slate-900 hover:bg-slate-800 text-slate-400 hover:text-white border border-slate-800 px-3 py-2.5 rounded-xl text-xs font-bold transition-all">
+                                    💬 ${issue.comments ? issue.comments.length : 0}
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        function filterAndSortIssues() {
+            renderFeed();
+        }
+
+        function openRaiseModal() {
+            document.getElementById('raiseModal').classList.remove('hidden');
+            document.getElementById('raiseModal').classList.add('flex');
+            if (currentActivePin) {
+                document.getElementById('modalPin').value = currentActivePin;
+            }
+        }
+
+        function closeRaiseModal() {
+            document.getElementById('raiseModal').classList.remove('flex');
+            document.getElementById('raiseModal').classList.add('hidden');
+        }
+
+        function submitComplaint(event) {
+            event.preventDefault();
+            const pin = document.getElementById('modalPin').value.trim();
+            const category = document.getElementById('modalCategory').value;
+            const title = document.getElementById('modalTitle').value.trim();
+            const desc = document.getElementById('modalDesc').value.trim();
+            const urgency = document.getElementById('modalUrgency').value;
+            const author = document.getElementById('modalAuthor').value.trim();
+
+            if (pin.length !== 6 || isNaN(pin)) {
+                showToast("Error", "Please enter a valid 6-digit Pincode.", "❌");
+                return;
+            }
+
+            const db = getStorageData();
+            if (!db[pin]) db[pin] = [];
+
+            const newIssue = {
+                id: 'js-' + Math.floor(1000 + Math.random() * 9000),
+                pincode: pin,
+                title,
+                description: desc,
+                category,
+                urgency,
+                status: 'reported',
+                author,
+                timestamp: Date.now(),
+                votes: 1,
+                vouchedUsers: [author],
+                comments: []
+            };
+
+            db[pin].unshift(newIssue);
+            saveStorageData(db);
+
+            closeRaiseModal();
+            document.getElementById('complaintForm').reset();
+
+            // Auto navigate to this pincode if not already
+            document.getElementById('pincodeInput').value = pin;
+            currentActivePin = pin;
+            document.getElementById('emptyState').classList.add('hidden');
+            document.getElementById('feedSection').classList.remove('hidden');
+            document.getElementById('activePinTitle').textContent = `Pincode: ${pin}`;
+            renderFeed();
+
+            showToast("Grievance Broadcasted", `Successfully registered on Pincode ${pin} Ledger.`, "🚀");
+        }
+
+        function vouchIssue(issueId) {
+            const db = getStorageData();
+            let found = false;
+
+            for (let pin in db) {
+                const issue = db[pin].find(i => i.id === issueId);
+                if (issue) {
+                    issue.votes += 1;
+                    found = true;
+                    break;
+                }
+            }
+
+            if (found) {
+                saveStorageData(db);
+                renderFeed();
+                showToast("Vouch Recorded", "Your civic vouch has strengthened this petition.", "👍");
+            }
+        }
+
+        function openDetailView(issueId) {
+            const db = getStorageData();
+            let targetIssue = null;
+            let targetPin = null;
+
+            for (let pin in db) {
+                const issue = db[pin].find(i => i.id === issueId);
+                if (issue) {
+                    targetIssue = issue;
+                    targetPin = pin;
+                    break;
+                }
+            }
+
+            if (!targetIssue) return;
+
+            const detailContainer = document.getElementById('detailContent');
+            detailContainer.innerHTML = `
+                <div>
+                    <div class="flex items-center justify-between mb-3">
+                        <span class="bg-orange-500/10 text-orange-400 border border-orange-500/20 text-xs font-bold px-3 py-1 rounded-full uppercase">${targetIssue.category}</span>
+                        <span class="text-slate-500 text-xs font-mono">Pincode: ${targetPin}</span>
+                    </div>
+                    <h3 class="text-2xl font-black mb-2">${targetIssue.title}</h3>
+                    <div class="flex items-center gap-4 text-xs text-slate-400 mb-6">
+                        <span>Reported by <strong class="text-slate-200">${targetIssue.author}</strong></span>
+                        <span>•</span>
+                        <span>${getTimeAgo(targetIssue.timestamp)}</span>
+                        <span>•</span>
+                        <span class="text-orange-400 font-bold">${targetIssue.votes} Citizen Vouches</span>
+                    </div>
+                    <div class="bg-slate-900 border border-slate-800 p-4 rounded-2xl text-slate-300 text-sm leading-relaxed mb-6">
+                        ${targetIssue.description}
+                    </div>
+
+                    <div class="flex items-center gap-3 mb-8">
+                        <button onclick="vouchIssue('${targetIssue.id}'); openDetailView('${targetIssue.id}');" class="flex-1 bg-orange-600 hover:bg-orange-700 text-white font-bold py-3 rounded-xl text-sm transition-all flex items-center justify-center gap-2 shadow-lg shadow-orange-600/20">
+                            ✓ Vouch For This Grievance (${targetIssue.votes})
+                        </button>
+                    </div>
+
+                    <div class="border-t border-slate-800 pt-6">
+                        <h4 class="text-base font-bold mb-4">Resident Discussions & Updates (${targetIssue.comments ? targetIssue.comments.length : 0})</h4>
+                        <div class="space-y-3 mb-6 max-h-60 overflow-y-auto pr-2">
+                            ${targetIssue.comments && targetIssue.comments.length > 0 ? targetIssue.comments.map(c => `
+                                <div class="bg-slate-900/80 border border-slate-800/80 p-3.5 rounded-xl text-xs">
+                                    <div class="flex justify-between items-center mb-1">
+                                        <span class="font-bold text-slate-300">${c.author}</span>
+                                        <span class="text-slate-500">${c.time}</span>
+                                    </div>
+                                    <p class="text-slate-400">${c.text}</p>
+                                </div>
+                            `).join('') : '<p class="text-slate-500 text-xs italic">No comments yet. Start the discussion below.</p>'}
+                        </div>
+
+                        <form onsubmit="addComment(event, '${targetIssue.id}')" class="flex gap-2">
+                            <input type="text" id="commentAuthor" required placeholder="Your Name" class="w-1/3 bg-slate-900 border border-slate-800 rounded-xl px-4 py-2.5 text-xs focus:outline-none focus:border-orange-500">
+                            <input type="text" id="commentText" required placeholder="Write a comment or update..." class="flex-1 bg-slate-900 border border-slate-800 rounded-xl px-4 py-2.5 text-xs focus:outline-none focus:border-orange-500">
+                            <button type="submit" class="bg-slate-800 hover:bg-orange-600 text-white font-bold px-5 py-2.5 rounded-xl text-xs transition-all">Send</button>
+                        </form>
+                    </div>
+                </div>
+            `;
+
+            document.getElementById('detailModal').classList.remove('hidden');
+            document.getElementById('detailModal').classList.add('flex');
+        }
+
+        function closeDetailModal() {
+            document.getElementById('detailModal').classList.remove('flex');
+            document.getElementById('detailModal').classList.add('hidden');
+            renderFeed();
+        }
+
+        function addComment(event, issueId) {
+            event.preventDefault();
+            const author = document.getElementById('commentAuthor').value.trim();
+            const text = document.getElementById('commentText').value.trim();
+
+            const db = getStorageData();
+            for (let pin in db) {
+                const issue = db[pin].find(i => i.id === issueId);
+                if (issue) {
+                    if (!issue.comments) issue.comments = [];
+                    issue.comments.push({ author, text, time: 'Just now' });
+                    saveStorageData(db);
+                    break;
+                }
+            }
+
+            openDetailView(issueId);
+            showToast("Comment Added", "Your response has been added to the ledger.", "💬");
+        }
+
+        function getTimeAgo(timestamp) {
+            const seconds = Math.floor((Date.now() - timestamp) / 1000);
+            if (seconds < 60) return 'Just now';
+            const minutes = Math.floor(seconds / 60);
+            if (minutes < 60) return `${minutes}m ago`;
+            const hours = Math.floor(minutes / 60);
+            if (hours < 24) return `${hours}h ago`;
+            const days = Math.floor(hours / 24);
+            return `${days}d ago`;
+        }
+
+        function showToast(title, msg, icon = '✓') {
+            const toast = document.getElementById('toast');
+            document.getElementById('toastTitle').textContent = title;
+            document.getElementById('toastMsg').textContent = msg;
+            document.getElementById('toastIcon').textContent = icon;
+
+            toast.classList.remove('translate-y-24', 'opacity-0');
+            toast.classList.add('translate-y-0', 'opacity-100');
+
+            setTimeout(() => {
+                toast.classList.remove('translate-y-0', 'opacity-100');
+                toast.classList.add('translate-y-24', 'opacity-0');
+            }, 3500);
+        }
+    </script>
 </body>
 </html>
