@@ -1,36 +1,807 @@
-name: Tandav Data Sync
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#CD130A">
+  <meta name="description" content="Tandav India Radio — discover and listen to radio stations from India and around the world.">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <link rel="icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAyAAAAMgCAIAAABUEpE/AAAACXBIWXMAAA7EAAAOxAGVKw4bAAAFTWlUWHRYTUw6Y29tLmFkb2JlLnhtcAAAAAAAPD94cGFja2V0IGJlZ2luPSfvu78nIGlkPSdXNU0wTXBDZWhpSHpyZVN6TlRjemtjOWQnPz4KPHg6eG1wbWV0YSB4bWxuczp4PSdhZG9iZTpuczptZXRhLyc+CjxyZGY6UkRGIHhtbG5zOnJkZj0naHR0cDovL3d3dy53My5vcmcvMTk5OS8wMi8yMi1yZGYtc3ludGF4LW5zIyc+CgogPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9JycKICB4bWxuczpBdHRyaWI9J2h0dHA6Ly9ucy5hdHRyaWJ1dGlvbi5jb20vYWRzLzEuMC8nPgogIDxBdHRyaWI6QWRzPgogICA8cmRmOlNlcT4KICAgIDxyZGY6bGkgcmRmOnBhcnNlVHlwZT0nUmVzb3VyY2UnPgogICAgIDxBdHRyaWI6Q3JlYXRlZD4yMDI2LTA5LTAyPC9BdHRyaWI6Q3JlYXRlZD4KICAgICA8QXR0cmliOkRhdGE+eyZxdW90O2RvYyZxdW90OzomcXVvdDtEQUhVRWdqU0E0TSZxdW90OywmcXVvdDt1c2VyJnF1b3Q7OiZxdW90O1VBRzlRb1RWYnF3JnF1b3Q7LCZxdW90O2JyYW5kJnF1b3Q7OiZxdW90O0JBRzlRbUNOTGxvJnF1b3Q7fTwvQXR0cmliOkRhdGE+CiAgICAgPEF0dHJpYjpFeHRJZD5iNzk1ZTliNy0yZGQ1LTQxMGUtYmYwOC1jNmUzNDM0MjRmZGI8L0F0dHJpYjpFeHRJZD4KICAgICA8QXR0cmliOkZiSWQ+NTI1MjY1OTE0MTc5NTgwPC9BdHRyaWI6RmJJZD4KICAgICA8QXR0cmliOlRvdWNoVHlwZT4yPC9BdHRyaWI6VG91Y2hUeXBlPgogICAgPC9yZGY6bGk+CiAgIDwvcmRmOlNlcT4KICA8L0F0dHJpYjpBZHM+CiA8L3JkZjpEZXNjcmlwdGlvbj4KCiA8cmRmOkRlc2NyaXB0aW9uIHJkZjphYm91dD0nJwogIHhtbG5zOmRjPSdodHRwOi8vcHVybC5vcmcvZGMvZWxlbWVudHMvMS4xLyc+CiAgPGRjOnRpdGxlPgogICA8cmRmOkFsdD4KICAgIDxyZGY6bGkgeG1sOmxhbmc9J3gtZGVmYXVsdCc+VW50aXRsZWQgZGVzaWduIC0gMTwvcmRmOmxpPgogICA8L3JkZjpBbHQ+CiAgPC9kYzp0aXRsZT4KIDwvcmRmOkRlc2NyaXB0aW9uPgoKIDxyZGY6RGVzY3JpcHRpb24gcmRmOmFib3V0PScnCiAgeG1sbnM6cGRmPSdodHRwOi8vbnMuYWRvYmUuY29tL3BkZi8xLjMvJz4KICA8cGRmOkF1dGhvcj5WaW5vZCBLdW1hcjwvcGRmOkF1dGhvcj4KIDwvcmRmOkRlc2NyaXB0aW9uPgoKIDxyZGY6RGVzY3JpcHRpb24gcmRmOmFib3V0PScnCiAgeG1sbnM6eG1wPSdodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvJz4KICA8eG1wOkNyZWF0b3JUb29sPkNhbnZhIChSZW5kZXJlcikgZG9jPURBSFVFZ2pTQTRNIHVzZXI9VUFHOVFvVFZicXcgYnJhbmQ9QkFHOVFtQ05MbG88L3htcDpDcmVhdG9yVG9vbD4KIDwvcmRmOkRlc2NyaXB0aW9uPgo8L3JkZjpSREY+CjwveDp4bXBtZXRhPgo8P3hwYWNrZXQgZW5kPSdyJz8+s3wuLQAAAE5lWElmTU0AKgAAAAgABAEaAAUAAAABAAAAPgEbAAUAAAABAAAARgEoAAMAAAABAAIAAAITAAMAAAABAAEAAAAAAAAAAABgAAAAAQAAAGAAAAABdwXf5wAANAtJREFUeJzs2LENhDAABEEbkRDTf0f0BCEiX8n610wFF65uXucxAADobKsHAAD8G4EFABATWAAAMYEFABATWAAAMYEFABATWAAAMYEFABATWAAAMYEFABATWAAAMYEFABATWAAAMYEFABATWAAAMYEFABATWAAAMYEFABATWAAAMYEFABATWAAAMYEFABATWAAAMYEFABATWAAAMYEFABATWAAAMYEFABATWAAAMYEFABATWAAAMYEFABATWAAAMYEFABATWAAAMYEFABATWAAAMYEFABATWAAAMYEFABATWAAAMYEFABATWAAAMYEFABATWAAAMYEFABDbVw/4mGOungAA/KR73KsnvDxYAAAxgQUAEBNYAAAxgQUAEBNYAAAxgQUAEBNYAAAxgQUAEBNYAAAxgQUAEBNYAAAxgQUAEBNYAAAxgQUAEBNYAAAxgQUAEBNYAAAxgQUAEBNYAAAxgQUAEBNYAAAxgQUAEBNYAAAxgQUAEBNYAAAxgQUAEBNYAAAxgQUAEBNYAAAxgQUAEBNYAAAxgQUAEBNYAAAxgQUAEBNYAAAxgQUAEBNYAAAxgQUAEBNYAAAxgQUAEBNYAAAxgQUAEBNYAAAxgQUAEBNYAAAxgQUAEBNYAAAxgQUAEBNYAAAxgQUAEBNYAAAxgQUAEBNYAAAxgQUAEBNYAAAxgQUAEBNYAAAxgQUAEBNYAAAxgQUAEBNYAAAxgQUAEBNYAAAxgQUAEBNYAAAxgQUAEHsAAAD//+zdzXLaWBqH8f8rJIz4sh2DXTVd1d7Prm+gN72ZG+1r6P3cw/R+qmYRu01iAwYESG8vDsgYO+kkfRLsyfMr18mRbKoglSiPPkNgAQAAREZgAQAAREZgAQAAREZgAQAAREZgAQAAREZgAQAAREZgAQAAREZgAQAAREZgAQAAREZgAQAAREZgAQAAREZgAQAAREZgAQAAREZgAQAAREZgAQAAREZgAQAAREZgAQAAREZgAQAAREZgAQAAREZgAQAAREZgAQAAREZgAQAAREZgAQAAREZgAQAAREZgAQAAREZgAQAAREZgAQAAREZgAQAAREZgAQAAREZgAQAAREZgAQAAREZgAQAAREZgAQAAREZgAQAAREZgAQAAREZgAQAAREZgAQAAREZgAQAAREZgAQAAREZgAQAAREZgAQAAREZgAQAARJYe+g3gRRi7X1e+dGWmliw3tUxHZtmh3xgAvEwurVyFfO5auObuldQ0/SNJcjv0m8MLQGBBkt6W/u9VOaq8bTZMbJhomCRvTL1EicKXWZiYEskkNiAAvgcuVWF0VQpf7tLaNXGNquqPyv+o9EdVraWzxP51ZLmxgQSBBUnSvfy/ZfWfdbVwZaZUlklHprbZm8TemE4Te5PYmdlZYm8SOzU7YgMC4Dswd72vfOT+rvJ3O5Nb19y9cK3lK9dKOknsn42kcGcPFCKwEJSumet9pbG7JMklJVJq1jV1TF2z7ma0rlkvUVjsPKxX16xtlhubFgCvTCXNXPfuU/fpZqKp+737tNJkuzitJ5Vm7uuwrdwxb3h1mE+AF4fAwgdV0tL9neudtLcZaZh6tjmmNUjsLNHAknBw69iUmhoKX9ao56aGlEqJLN2eZwSAr8qlUipdpXw72X65SvlaKl0r6X3l79xHld9UPnKNKh9VPqqquas89KfAa0Rg4UuUrrH7tPL/mRpSIktUhorKpJ5Zz9RPrG/WN/US65uOzfpm/cR6pr5Zx5RRWAC+pnAd+sT9zjWpqvFm7uNKE/ex+9g1rnzsuvdNaVVSKd9ca+UqnxyjAj4RgYUvFDZA223P5hdzmXRrnsmalTelpqkpa5o2c7OmNmPLlJuFMZdys9zqUbk2i0dSg9OOALY8XNUgzd3D7Xtzae4+d829nvhcWrgXrkJaui9dK/nStZSWruXu3H1FSCE2AgsxueTSwrWQ72yuntlwJVLTrG0Kl211ZLmpvV3TNtWTXJaZUqkRxu1px3TntGPDbDPZuc+xvvPRrL4XEsDBPNyOJ1VeL3q1baZw5m69PZ233q5cPz6dt5ZWrnv3mWvuPpNm7jPfGzVzn0srd8oJB0FgIbBvfJCokhbuC9e7v9pvNKlpys06m+SyttR+XGOdutVkRxZuhFRmnsoyU+bKTJmsWTfWc5+Vg2TA3/f832eXpFJaSqtwz51rpc39d2tp6Src5wrZtCmkOqHuH8VTyKZv+qGAL0Bg4aULV1GU7vPN9fIeDlOFa+eTzXEsa+wfvto8rMs2a2x3Zfb40vvNy7crU1IL+By+OeyknavIffdy8tBDjw5Z+eaAd6WHSf3anfnz64GXj8BC4P6Cr0AI13utXQ+7x/tv9jPevEnp5qShNbanDhvb04ihtAB8On+4PPzh2vDw17aUc6k4vk8EFv5au93udrvuXpblekdVvcoHvvjD+QV/tBYAHms0GmmahjFMkiS5vb0tiuLQbw0vHYGF4GP/s8NPP/30yy+/LJfL0Wh0fX19dXV1dXU1Go3G4/G3e4MA8G2ZWb/fHw6HFxcXFxcXw+Hw9PS00+n8+uuvv//++6HfHV46AgvBx260+eGHH37++ed+v18Uxf39/XQ6nU6n9/f3k8nk/fv3d3d34/H47u7u9vY2zCeTyWw2Yw8PwMuX53mn0+n1esc7+v3+8fHx6elpt9vtdrudTieMaZouFovffvvt0O8arwCBhb/W7XYvLy8vLy+zLKtXVlW1WCyur69HWzc3Nzc3N6PR6Pb2djweT6fT5VZRFMsn1uv1AT8UgP97ZpamabPZbDabR0dHzeeEljo5ORkMBmdnZ4PBYDAYnJ6eDgaD8/PzNE2T5OEBL/P5/O3bt3meH/BD4bUgsPCFkiRpt9uXl5c//vijpPCsGXcPk9VqNZvNrreurq725qPR6O7ujifUAPh6Go3G8fHxcDg833FxcVHPh8Nhq9VqNBpmJqkedxf3PLsSeIrAwt9Sb4n2pGmaZVmr1bq4uCiKoiiKxWJR7Fgul6vVajqdzmaz+Xwexnqyt7i7frFYcOgL+N40m808z9vtdp7n9WR3rLXb7Xp9u93OsuzoiVarVc+TJPmsZmK3EJ+IwMJXYWZZlmVZ1u12P/JjIZsWi0UY60m9+PRbi8UinGFcrVZhrCfL5bIsy2qHuz+7WJZlONj27E/uzsuSZ+4AzzCz5Im9lWEHLEmScIjo4z8Z7tRrNpth0xEm9WKoojzP6zH40JpWq9Vut4+Ojg79+4TvF4GFQwq7mJ/7qqIoJpPJdDoNYzAej8fjcSit3WdJ7C0GRVGEeFqtVmHc+4F6zXK5ZIcVeCpJklA/6WN7a5IkCdlUf7fRaDz7qmazGZ4IE/R6vXrsdrtpyr9WeGX4I4vXJ8uyk5OTXq93fn4eOikcuAqjb2l7TdizPvTdp+sP/GmBl8o+YO9bkurTcB96ye6xrjDuTQ78UYHPR2Dh9QnnFNijBfDtcZE7PhG7BQAAAJERWAAAAJERWAg46g0AQDQEFmokFgAAcRBYAAAAkRFYCFzieQQAAMRBYAEAAERGYCHgAiwAAKIhsBDwwHIAAKIhsAAAACIjsAAAACIjsAAAACIjsAAAACIjsAAAACIjsAAAACIjsAAAACIjsAAAACIjsAAAACIjsAAAACIjsAAAACIjsAAAACIjsAAAACIjsAAAACIjsAAAACIjsAAAACIjsAAAACIjsAAAACIjsAAAACIjsAAAACIjsAAAACIjsAAAACIjsAAAACIjsAAAACIjsAAAACIjsAAAACIjsAAAACIjsAAAACIjsAAAACIjsAAAACIjsAAAACIjsAAAACIjsAAAACIjsAAAACIjsAAAACIjsAAAACIjsAAAACIjsAAAACIjsAAAACIjsAAAACIjsAAAACIjsAAAACL7EwAA///s3etTG1eax/HnOd26IIy4GwyxY2PiSzYOniTjyc5MamZeTGVd+6fOVO2bvHB5K6mpqUwSe3zBHq/tgME4QIwwN2HQtfucfdFCYXzh5sYS5vt50XUkQekIpO6fnnP6NAELAAAgZgQsAACAmBGwAAAAYkbAAgAAiBkBCwAAIGYELAAAgJgRsAAAAGJGwAIAAIgZAQsAACBmBCwAAICYEbAAAABiRsACAACIGQELAAAgZgQsAACAmBGwAAAAYkbAAgAAiBkBCwAAIGYELAAAgJgRsAAAAGJGwAIAAIgZAQsAACBmBCwAAICYEbAAAABiRsACAACIGQELAAAgZgQsAACAmBGwAAAAYkbAAgAAiBkBCwAAIGYELAAAgJgRsAAAAGJGwAIAAIgZAQsAACBmBCwAAICYEbAAAABiRsACAACIGQELAAAgZgQsAACAmBGwAAAAYkbAAgAAiBkBCwAAIGYELAAAgJgRsAAAAGJGwAIAAIgZAQsAACBmBCwAAICYEbAQUW10DwAAeGcQsFBHxAIAIB4ELNS5RncAAIB3BAELEdIVAACxIWAhwvggAACxIWABAADEjICFiGOMEACAuBCwAAAAYkbAAgAAiJnf6A6gWTDLfTO7IQxDa617FRF55Z0NZ4zxfb+trS2RSDS6L9hGuVxeX18PgsBa2+i+iIjoa7zwkHlJozv+9jTJxxzNj4AFvMg5VywWC5uUSqUwDKvVahAE0XZzI2pXq9UmOUam0+menp4vvviiv7+/0X3BNmZmZm7dupXL5arVaqP7IiJijEkkEolEwvf9aFtv1G/6vt/S0pLZpKWlpdEdB5oOAQs1796XslKptLa2trq6Wi6XS6VSqVQqb6i3641KpVJvRGmpHqGq1WpUx3ol51y91tUkX23b2tpOnjx57tw5Albzm5qa+uqrryYmJkqlUqP7IiKiqp7nvVygqovKVy+krkQikUwmk8lkKpVKpVL1Rjqd3tzYfLOlpSWbzWYymWQy2egXDewLAhYOJOfc5sC0OSTVo9L6+vrz589XVlaKG6KY9XK7nrSibaVSafTreyPZbHZlZWV1dbXRHcH2FhYWRkdHx8bGmiRg7Y2q1pNTPUtFKSravtzIZDKdnZ2tra2ZTCadTtfzWT2c1QMZCQwHFAELNc05B6s+1WnzTREJgmB+fj63yfz8/MLCwsLCwrNnz+bn5+fm5sIwbFi/GyoMw/X19UP78g+WSqVSKBSaZHB5z6IvPKVSKZ/P7/Z3W1paBgYGent7e3p6ou3Ro0f7+vr6+vr6+/v7+vq6u7t142L09dlgm2++ZQ15UhxEBCxEmm6X4Zx79uzZwsLC4uJitF1aWlpYWFheXo7KMy+UrCqVSjS6FzUO+hHrTQRBsLa2FgRBozuC7VWr1bW1tcP8dq1UKk+fPl1cXEwmk5uHGjdvu7q6Ojs7Ozs7e3p6urq6uru7e3t7u7u7u7q6Ojo63nKHm2QmAJofAQuRRu4znHPr6+v5fH5paWl5eTmKUPl8fnl5OZ/Pr6ysRIkqaj9//vz58+eFQqFx/W12UcCignUglMvl58+fH+aAFYZhdCrJ635AVbPZbFtbWzab7ejoyGaz7e3tnZ2d7e3tUbsev6JGW1tbKpV6my8BeCUCFhogOiOvsqFYLOZyuampqYmJiYmJicnJycePH8/MzDS6mwdVNERIBetAqFQq6+vrje5FU3PO5fP51w0+JhKJ4eHhoaGh0xsGBwe7urqi6lckmrYfV38YIsQOEbDQACsrK9PT0z/++OPY2NjY2NijR4+Wl5eLxeLmwb5G9/HAi85tPFQLFOEQCoJgcnJydnb22rVr0XhiNpvt7+8/c+bM2bNnz5w5c+bMmd7e3kwm0+ie4tAhYOEtWVlZmZmZmZiYGB8fn52dzeVy0RSraH5VuVw+zKMk+yEIgjAMCVjNLFr+o9G9ONicc9FZw/V7EonEkydPJicnb9y4Ec2aHxwcPHnyZFTo6unpSafTDewwDg8CFvaLtbZSqeQ3PHny5MGDB6Ojo7dv387lck01icqIeCKeiidiRFVERYxK1FARI7+0VUS1dlLAxlY3tV94SF58SH/5mTe0aN2qc+XXzJ4LwzAMQxZzb2bRKrWvfEhFkipdqu0mhjeLixa6cxuNl7avuule/kUnYuWXdu2mqzWsuFAkdBI2dF29arUaTdwcHx+P7jl69Ojp06cvXrw4MjIyNDTU19fX3t7e3t5+5MgR39/1QZBJ7tghAhYiauI+kbBareZyuevXr3///fc//PDDo0eP8vl8fX3OeJ/rDSVEWlVbjbSKplUSqgkVXyQhklBNiPgqCZGEqK/iixgRU0tjUVtVNt0UMRo11NsIat5GjDMinsZzEdAr5fCf1XDuNbv7qIIVx/Ngv0Rr2L7yISPSq+aPSfOfSe/NnyjKPVYk3EhIduMeK86K2Fq79gNWxDpnN9rRTwYiVeeqtYZUnQTiqlFbpOpcwcm6k3WRonNNsSz9hmfPni0uLt64ccMYc/z48YsXL37++eeff/75hx9+2NHRwZwq7BMCFmpi+VJmrS0Wi3fu3BkdHb1379709HR9qYX19fW3czGQtMoR1SMqadW0SFo1rZJSTYukVFpUUqopkZRqUiSlklL1RXwRT8WXjSKW1qpWRjY19N/rWCIioqKbC1Qv1KheaGz+xTd3y9i06uv+dQSs5rfF/0hFWlQGPHPWiyGNu1cVq15su5fvd/JSvcq6X+pYtt5wtfJVIBI6CUSq4ipOSk7KTiriyk5K4opOytGd4kpOSs6VnBScW3NS2M9M5pyLCroiMjs7u76+/vDhw6+++urYsWOnT5/+5JNPLly4MDw8vG/Pj0OKgIW6vUcsa20QBD/99NPU1NTjx49HR0fv3r07Nja2uLgY+zHeF0mqplSi8JRSidJSvZFRaVVtVUmrpERTmxJVuvYzkhRNqSRVkiJJ1QM6TSmjssX4H/N7mpxzbuuAlVA5otoZxxDhXu39qUORinNlJ2WRSj1jOSmLlJ2rbZ2UnCs6WXeuIFJ0tTvL4spRFKvlMCmLqzqJ5d0cXbzh6dOnIpLJZAYHBx88eDAyMvLRRx+dOHHixIkTvb29cTwPQMBCzR7TVTTRqlAoLC0tXbly5cqVK3//+98LhUIsucrbNBLniUY1pBaRdqNdRruNdKvpMtqp0mG0U7XTaKfRw3NZDaOyxcG3CYdi8YKt/0emCdf/3TFPpEW15ZcXsP1LKThZtG7FuSXrlq1bdrJk7aJzi1aWrFtzrvLLOKbbNMS5d4VCYXx8fHx8/MqVKwMDA5cvX758+fKlS5eiS/e8bnoWQ4rYIQIWInvZZVhr19bWfvjhh2+++eYf//jH3Nzc4uJiXNf9UJEeo/2eHjN6VE2vpz1Gu1RaVJMqvogvGk2N8jbdPFRv6Gj48nWcc8zGbXJbVxljHE0+ENIqR412i7zvaeAkEAnEC6JZX06KTtacW3Fu3rqcdTnr5kL3zLqVON7kxWJxenr6L3/5y7fffnv+/Pk///nPv/3tb0+dOvXKjMXHCjt0qI5H2NoudubVanV2dvb+/fujo6N37ty5d+/exMREtVp9k2iVUe0wclS1x2i30Q6jWdV2lajRptqm0qriH9gRvdhtXeEgYDW/rf5HerArWHtgRFL183FfKn0FImXnCk5WnctbWXUu71zeSt65vHULzj2zbn6j0LVb1tpSqRRdsefnn3/O5XK3b9/++OOPR0ZGhoeHs9ksVSvsAQELddvvloIgKBaLKysruVzu1q1b33zzzd/+9rfFxcW9LRpuRNIqadUWkRbVHqPveTrkmVOeOe7psUZOPTkYlArWAbfF/6i2Gggfgg2+iK/aqtIrKhsnVoYiJSdz1j4J3ePQToQuZ13euqJzRSclcRW3u9kPlUplbm5ubm7u+++/P3fu3Jdffvn73/9+aGioq6urvb09WvSEsIUdImAhsqND8dra2oMHD65evfr111+Pj4/n8/k9LxBqRJIqJz3zgWfO+ea8Z3o9bVXxRaMlqbCtrf9I1loCVpPbdogQW/NEMirve+Y9I79JeKG4ZSvT1j4I7MPATob2qXXBLjNWpFAo3L17d3x8/K9//eulS5e+/PLLP/3pT8x/x64QsLC9MAwXFhbu3bt37dq1O3fuTE9Pz87Orq6u7nYme0olqzpodMAzg54OGO1U7ahtpUU1hgV/DpmthwiZ5N7ktp7kftjmYO2N1opbkhIR0bQnbWqOGf3E95adW7Tu59DNWvtz6GatKzm3w2K7c65arUaXTC0Wi1NTU1evXv3ss88uXLgwMDDAVxfsBAEL23vy5MnVq1fv379//fr1x48f7/bXkypZ1aNG+4weM3rcM8c9HfTMgFGPQ8gb2PoATLpqflsP4/LR2IOkSJfRLlHxJBQpOPk5tDPWTId2xrqnoZu3bsG6ded2+O2wVCpNT0/PzMzcuHFjbGzs008/PX/+/Pz8/P6+DLwTCFiI1K/+8grffffd9evXS6XSro7Z9VU6u1U/TJg/JLyPfXM8jlUTEYmm6WyB79nNjwk9+8cTaVM565uztVtyL7DXquF31XAykMLGUvU74ZwrlUrXrl27efNmJpMpFov72G+8KwhYiLgtJipEyyHuKl0ZkSOqZ31z0TfnfTPgaafqEY4lwCaqukXAYogwdic97TL+pYT3U2j/Fdh/BfZRYHd15cQwDONa5w/vPAIWtrfzaGVEUqqDRo97etIzQ54Oe2bAI1rtiy2KjjgQKF+9ZdFFtPqMDho9ZvS0ZyZ9+1PoZkI7Z91Okla0/v7b6CsOPgIWYqC103k0q9JjzKcJ8+uEOe+bVg4g++61f2DGB5vfthUs7AcvmqdlvAsJWbXuZjW8WdU7oc1bt+5cyQnlKcSCgIUYJFQ6VH+d8H6d8D72TZtKi2qKAsv+2/ovTMY66PgE7StfpMPo75LeSMJbsu5mNbxetf8X2FXnOEMEb46Ahb2Lvgie8swHvhny9LgxA54eNXrYVqBulG3TFQGryVHBaqyo9N6q2qLSodKi3inP/GTdRGDHQztj3YrlE4S9I2BhL1IqHaoDRk955qOE+dA3pzzDm+nt23odrLfXD+zJ1gELb000efSkp+97MuJkwrN3A/swtE9Cm7PuuXXVRvcQBxHHRES2WqbhZR2qv0t4/53yPvBNRuvXD8Nbxd8ciJeKHFH5OGEuJMySdQ8C+z/l4F+BXaKUhd0jYGEXBox+4JsR3zvh6Xue9hlN8wUcwLslWiAja/Q/fNNlErOhmwrt3cA+Cu0zkhZ2jICFiNviDOUWlS6tzbU655tzvulRTROsALy7aovCGz3puWGr73n6MNBHoZsK7YpzZYIWtkPAQs3Luwsj4omkVQeMfuSb/0r5Q752ULFqGuzhgbegVXXI0yHPXEq4+4H930r4MLDz1pXcjpbOwqFFwMJrZVQHPf0i4Y0kzCnPtKukSFcADqsOo79KmNOembT2n1X7bSWYs5Sy8FoELLzIFzmiOuybs7456+mwZ455miVaATjcfJE21TZPWo3pUH3f6Hhofwzsk9CtctYuXkLAQo2KJFS6VHuNnjDmN0lz0TenuDYzAPy7DtUOX8/5ZjKwN429FYRPQrdonc/3UGxCwEKNimRVzvvmD0nvk4TXKsrOAgBeJyEy7Jv3PfMH690Owq8rYY5zDLEJAQsiIkeN+WPSu6x+r9F+o+2qXqO7hG0RgIHG8kQ8lV6jnyW8QaMLTsrOtTOhAiJCwEKk28ivEl6PapI9AwDsRlKlX7XfeAUnS84dIWBBRAhYiLSqtrJPOGgYjQCaSkYlQ7rCBqYwAwAAxIyABQAAEDMCFgAAQMwIWAAAADEjYAEAAMSMgAUAABAzAhYAAEDMCFgAAAAxI2ABAADEjIAFAAAQMwIWAABAzAhYAAAAMSNgAQAAxIyABQAAEDMCFgAAQMwIWAAAADEjYAEAAMSMgAUAABAzAhYAAEDMCFgAAAAx+38AAAD//+zWsQAAAADAIH/rSewsigQLAGAmWAAAM8ECAJgJFgDATLAAAGaCBQAwEywAgJlgAQDMBAsAYCZYAAAzwQIAmAkWAMBMsAAAZoIFADATLACAmWABAMwECwBgJlgAADPBAgCYCRYAwEywAABmggUAMBMsAICZYAEAzAQLAGAmWAAAM8ECAJgJFgDATLAAAGaCBQAwEywAgJlgAQDMBAsAYCZYAAAzwQIAmAkWAMBMsAAAZoIFADATLACAmWABAMwECwBgJlgAADPBAgCYCRYAwEywAABmggUAMBMsAICZYAEAzAQLAGAmWAAAM8ECAJgJFgDATLAAAGaCBQAwEywAgJlgAQDMBAsAYCZYAAAzwQIAmAkWAMBMsAAAZoIFADATLACAmWABAMwECwBgJlgAADPBAgCYCRYAwEywAABmggUAMBMsAICZYAEAzAQLAGAmWAAAM8ECAJgJFgDATLAAAGaCBQAwEywAgJlgAQDMBAsAYCZYAAAzwQIAmAkWAMBMsAAAZoIFADATLACAmWABAMwECwBgJlgAADPBAgCYCRYAwEywAABmggUAMBMsAICZYAEAzAQLAGAmWAAAM8ECAJgJFgDATLAAAGaCBQAwEywAgJlgAQDMBAsAYCZYAAAzwQIAmAkWAMBMsAAAZoIFADATLACAmWABAMwECwBgJlgAADPBAgCYBQAA///s3ctu4zgURVHqYSPO/3+tX+yBU6OWmAr6wK0brDVM1UAAAWnjkrIEFgBAmMACAAgTWAAAYQILACBMYAEAhAksAIAwgQUAECawAADCBBYAQJjAAgAIE1gAAGECCwAgTGABAIQJLACAMIEFABAmsAAAwgQWAECYwAIACBNYAABhAgsAIExgAQCECSwAgDCBBQAQJrAAAMIEFgBAmMACAAgTWAAAYQILACBMYAEAhAksAIAwgQUAECawAADCBBYAQJjAAgAIE1gAAGECCwAgTGABAIQJLACAMIEFABAmsAAAwgQWAECYwAIACBNYAABhAgsAIExgAQCECSwAgDCBBQAQJrAAAMIEFgBAmMACAAgTWAAAYQILACBMYAEAhAksAIAwgQUAECawAADCBBYAQJjAAgAIE1gAAGECCwAgTGABAIQJLACAMIEFABAmsAAAwgQWAECYwAIACBNYAABhAgsAIExgAQCECSwAgDCBBQAQJrAAAMIEFgBAmMACAAgTWAAAYQILACBMYAEAhAksAIAwgQUAECawoLD+f18A/1Hvu2tocaE0gQVV9eEzeJqmaZredzX83DRN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E1gAADGBBQAQE1gAADGBBQAQE1gAADGBBQAQE1gAADGBBQAQE1gAADGBBQAQE1gAADGBBQAQE1gAADGBBQAQE1gAADGBBQAQE1gAADGBBQAQE1gAADGBBQAQE1gAADGBBQAQE1gAADGBBQAQE1gAADGBBQAQE1gAADGBBQAQE1gAADGBBQAQE1gAADGBBQAQE1gAADGBBQAQE1gAADGBBQAQE1gAADGBBQAQE1gAADGBBQAQE1gAADGBBQAQE1gAADGBBQAQE1gAADGBBQAQE1gAADGBBQAQE1gAALE9PeBx1pmeAADwy4MFABATWAAAMYEFABATWAAAMYEFABATWAAAMYEFABATWAAAMYEFABATWAAAMYEFABATWAAAMYEFABATWAAAMYEFABATWAAAMYEFABATWAAAMYEFABATWAAAMYEFABATWAAAMYEFABATWAAAMYEFABATWAAAMYEFABATWAAAMYEFABATWAAAMYEFABATWAAAMYEFABATWAAAMYEFABATWAAAMYEFABATWAAAMYEFABATWAAAMYEFABATWAAAMYEFABATWAAAMYEFABATWAAAsQuo3f/V3eNSWAAAAABJRU5ErkJggg==">
+  <title>Tandav India Radio — One INDIA One App</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --red: #CD130A;
+      --red-deep: #A80F08;
+      --red-pale: #FFF0EF;
+      --ink: #171717;
+      --muted: #6F6F73;
+      --line: #E8E8E8;
+      --page: #F5F5F5;
+      --surface: #FFFFFF;
+      --green: #46D99A;
+      --shadow: 0 12px 34px rgba(20, 20, 20, .07);
+      --radius: 20px;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+    body {
+      margin: 0; min-height: 100vh; color: var(--ink); background: var(--page);
+      font: 15px/1.5 Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      padding-bottom: calc(112px + env(safe-area-inset-bottom));
+    }
+    button, input, select { font: inherit; }
+    button { cursor: pointer; -webkit-tap-highlight-color: transparent; }
+    button:focus-visible, input:focus-visible, select:focus-visible { outline: 3px solid rgba(205,19,10,.25); outline-offset: 2px; }
+    .shell { width: min(1240px, calc(100% - 40px)); margin: 0 auto; }
+    .topbar { background: #111; color: #fff; border-bottom: 3px solid var(--red); }
+    .topbar-inner { min-height: 82px; display: flex; align-items: center; justify-content: space-between; gap: 18px; }
+    .brand { display: flex; align-items: center; gap: 12px; min-width: 0; }
+    .brand-logo { display: block; width: 52px; height: 52px; object-fit: cover; border-radius: 13px; flex: 0 0 52px; }
+    .brand-name { font-size: 16px; font-weight: 900; line-height: 1.1; letter-spacing: .075em; }
+    .brand-name span { color: #FF5148; }
+    .brand-tag { margin-top: 5px; color: #BDBDBD; font-size: 10px; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; }
+    .top-right { display: flex; align-items: center; gap: 10px; }
+    .brand-pill { display: flex; align-items: center; gap: 8px; border: 1px solid #404040; border-radius: 999px; padding: 8px 12px; font-size: 11px; color: #F3F3F3; white-space: nowrap; }
+    .live-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--green); box-shadow: 0 0 0 4px rgba(70,217,154,.12); }
+    .hero { margin: 24px auto 22px; overflow: hidden; position: relative; color: #fff; background: #161616; border-radius: 26px; min-height: 248px; padding: clamp(26px, 5vw, 48px); display: grid; grid-template-columns: minmax(0,1fr) 250px; align-items: center; gap: 26px; box-shadow: var(--shadow); }
+    .hero::before { content: ""; position: absolute; width: 440px; height: 440px; right: -90px; top: -230px; border-radius: 50%; border: 1px solid rgba(255,255,255,.10); box-shadow: 0 0 0 35px rgba(255,255,255,.025), 0 0 0 80px rgba(255,255,255,.02); pointer-events: none; }
+    .hero::after { content: ""; position: absolute; inset: auto 0 0; height: 4px; background: linear-gradient(90deg, var(--red), #FF6158 48%, transparent); }
+    .hero-copy, .signal-card { position: relative; z-index: 1; }
+    .eyebrow { display: inline-flex; align-items: center; gap: 8px; color: #FF7770; font-size: 11px; letter-spacing: .2em; font-weight: 850; text-transform: uppercase; }
+    .eyebrow-mark { width: 22px; height: 2px; background: var(--red); display: inline-block; }
+    h1 { margin: 13px 0 12px; font-size: clamp(34px, 5vw, 58px); letter-spacing: -.055em; line-height: .99; max-width: 720px; }
+    h1 span { color: #FF4A40; }
+    .hero-copy p { color: #C6C6C6; margin: 0; max-width: 570px; font-size: clamp(14px, 1.8vw, 16px); }
+    .hero-actions { display: flex; align-items: center; gap: 11px; flex-wrap: wrap; margin-top: 24px; }
+    .button-primary { border: 1px solid var(--red); background: var(--red); color: #fff; border-radius: 11px; padding: 12px 17px; min-height: 46px; font-weight: 800; transition: background .18s, transform .18s; }
+    .button-primary:hover { background: #E51C12; transform: translateY(-1px); }
+    .button-quiet { border: 1px solid #444; background: #202020; color: #fff; border-radius: 11px; padding: 11px 15px; min-height: 46px; font-weight: 700; }
+    .button-quiet:hover { background: #2A2A2A; }
+    .signal-card { min-height: 162px; border: 1px solid rgba(255,255,255,.13); background: linear-gradient(145deg, rgba(205,19,10,.24), rgba(255,255,255,.035)); border-radius: 20px; padding: 20px; display: flex; flex-direction: column; justify-content: space-between; }
+    .signal-top { display: flex; justify-content: space-between; gap: 12px; color: #BEBEBE; text-transform: uppercase; letter-spacing: .13em; font-size: 10px; font-weight: 800; }
+    .signal-icon { display: grid; place-items: center; width: 56px; height: 56px; background: var(--red); border-radius: 16px; font-size: 26px; box-shadow: 0 12px 30px rgba(205,19,10,.26); }
+    .signal-bottom { display: flex; justify-content: space-between; align-items: end; gap: 12px; }
+    .signal-title { font-weight: 850; font-size: 15px; }
+    .signal-sub { font-size: 11px; color: #A9A9A9; margin-top: 3px; }
+    .signal-bars { height: 34px; display: flex; align-items: center; gap: 3px; }
+    .signal-bars i { width: 3px; border-radius: 9px; background: #FF554B; animation: pulsebar 1s ease-in-out infinite alternate; }
+    .signal-bars i:nth-child(1), .signal-bars i:nth-child(7) { height: 9px; animation-delay: -.8s; }
+    .signal-bars i:nth-child(2), .signal-bars i:nth-child(6) { height: 18px; animation-delay: -.45s; }
+    .signal-bars i:nth-child(3), .signal-bars i:nth-child(5) { height: 25px; animation-delay: -.2s; }
+    .signal-bars i:nth-child(4) { height: 33px; }
+    @keyframes pulsebar { from { transform: scaleY(.55); opacity: .55; } to { transform: scaleY(1); opacity: 1; } }
 
-on:
-  schedule:
-    - cron: '*/10 * * * *'
-  workflow_dispatch:
+    .content { padding-bottom: 16px; }
+    .section-kicker { color: var(--red); font-size: 10px; letter-spacing: .18em; text-transform: uppercase; font-weight: 900; }
+    .section-title { margin: 4px 0 3px; font-size: 23px; letter-spacing: -.035em; line-height: 1.2; }
+    .section-copy { margin: 0; font-size: 13px; color: var(--muted); }
+    .search-panel { margin: 22px 0 14px; padding: 12px; border: 1px solid var(--line); border-radius: 17px; background: var(--surface); display: grid; grid-template-columns: minmax(0,1fr) 210px auto; gap: 9px; box-shadow: 0 5px 22px rgba(0,0,0,.025); }
+    .field { min-width: 0; min-height: 48px; display: flex; align-items: center; gap: 10px; padding: 0 13px; border: 1px solid #E4E4E4; border-radius: 11px; background: #FAFAFA; }
+    .field-icon { font-size: 18px; color: var(--red); flex: 0 0 auto; }
+    .field input, .field select { width: 100%; min-width: 0; color: var(--ink); background: transparent; border: 0; outline: 0; padding: 10px 0; }
+    .field input::placeholder { color: #9B9B9B; }
+    .field select { cursor: pointer; }
+    .field select option { color: #111; background: #fff; }
+    .search-panel .button-primary { padding: 0 18px; white-space: nowrap; }
+    .quick-row { display: flex; gap: 8px; overflow-x: auto; padding: 2px 0 8px; margin-bottom: 20px; scrollbar-width: thin; -webkit-overflow-scrolling: touch; }
+    .chip { flex: 0 0 auto; min-height: 40px; border: 1px solid #E0E0E0; background: #fff; color: #444; border-radius: 999px; padding: 8px 14px; font-size: 12px; font-weight: 750; transition: .15s; }
+    .chip:hover { border-color: #D5A09D; }
+    .chip.active { border-color: var(--red); color: #fff; background: var(--red); box-shadow: 0 5px 14px rgba(205,19,10,.15); }
+    .map-toggle-row { margin: 4px 0 16px; padding: 13px 15px; display: flex; align-items: center; justify-content: space-between; gap: 14px; border: 1px solid var(--line); border-radius: 15px; background: #fff; }
+    .map-toggle-title { font-size: 13px; font-weight: 850; }
+    .map-toggle-copy { font-size: 11px; color: var(--muted); margin-top: 2px; }
+    .map-toggle-button { flex: 0 0 auto; min-height: 40px; padding: 8px 13px; border: 1px solid #E5B6B3; border-radius: 10px; color: var(--red); background: var(--red-pale); font-size: 12px; font-weight: 800; }
+    .map-toggle-button:hover { background: #FFE4E2; }
+    .map-panel { margin: 0 0 22px; overflow: hidden; border: 1px solid var(--line); border-radius: 18px; background: #fff; box-shadow: 0 5px 22px rgba(0,0,0,.035); }
+    .map-heading { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 14px 16px; }
+    .map-heading strong { display: block; font-size: 13px; }
+    .map-heading span { display: block; color: var(--muted); font-size: 11px; margin-top: 2px; }
+    #radioMap { width: 100%; height: 360px; background: #EFEFEF; }
+    .map-note { color: var(--muted); font-size: 11px; padding: 9px 14px; margin: 0; border-top: 1px solid #EEE; }
+    .leaflet-popup-content-wrapper { border-radius: 12px !important; }
+    .map-popup-title { display: block; font-weight: 800; margin-bottom: 8px; max-width: 200px; }
+    .map-popup-play { border: 0; border-radius: 7px; padding: 7px 10px; background: var(--red); color: white; font: inherit; font-size: 12px; font-weight: 750; cursor: pointer; }
+    .station-section { scroll-margin-top: 20px; }
+    .list-head { display: flex; align-items: end; justify-content: space-between; gap: 16px; margin: 22px 0 12px; }
+    .list-title { font-size: 21px; line-height: 1.2; font-weight: 850; letter-spacing: -.035em; }
+    .list-subtitle { color: var(--muted); font-size: 12px; margin-top: 5px; }
+    .head-tools { display: flex; align-items: center; gap: 8px; }
+    .result-count { color: #6A6A6A; border: 1px solid var(--line); background: #fff; border-radius: 9px; padding: 8px 10px; font-size: 11px; white-space: nowrap; }
+    .icon-button { width: 40px; height: 40px; display: inline-grid; place-items: center; border: 1px solid var(--line); background: #fff; color: var(--ink); border-radius: 10px; font-size: 17px; }
+    .icon-button:hover { color: var(--red); border-color: #E7AAA6; }
+    #status { min-height: 20px; margin: 10px 1px 13px; color: var(--muted); font-size: 12px; }
+    #status.error { color: var(--red-deep); }
+    .station-grid { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 12px; }
+    .station { min-width: 0; background: var(--surface); border: 1px solid #E9E9E9; border-radius: 16px; padding: 13px; display: flex; align-items: center; gap: 11px; box-shadow: 0 4px 16px rgba(0,0,0,.025); transition: border-color .18s, transform .18s, box-shadow .18s; }
+    .station:hover { border-color: #E5AAA6; transform: translateY(-2px); box-shadow: 0 9px 24px rgba(0,0,0,.06); }
+    .station-art { flex: 0 0 50px; width: 50px; height: 50px; display: grid; place-items: center; overflow: hidden; border-radius: 13px; background: var(--red-pale); color: var(--red); font-size: 21px; font-weight: 900; }
+    .station-art img { width: 100%; height: 100%; object-fit: cover; }
+    .station-info { flex: 1; min-width: 0; }
+    .station-name { color: #171717; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; font-weight: 800; font-size: 13px; }
+    .station-meta { color: #777; font-size: 11px; margin-top: 4px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .station-actions { display: flex; align-items: center; gap: 5px; flex: 0 0 auto; }
+    .station-action { width: 36px; height: 36px; display: grid; place-items: center; border: 1px solid #EAEAEA; border-radius: 50%; background: #fff; color: #444; font-size: 15px; }
+    .station-action.favorite { color: var(--red); }
+    .station-action.play { background: var(--red); border-color: var(--red); color: #fff; }
+    .station-action.play:hover { background: var(--red-deep); }
+    .empty { grid-column: 1/-1; padding: 36px 20px; text-align: center; color: #707070; border: 1px dashed #D8D8D8; border-radius: 16px; background: rgba(255,255,255,.65); }
+    .empty strong { display: block; color: #222; margin-bottom: 5px; }
+    .skeleton { height: 78px; border-radius: 16px; background: linear-gradient(90deg,#EBEBEB 25%,#F7F7F7 40%,#EBEBEB 60%); background-size: 300% 100%; animation: shimmer 1.2s ease infinite; }
+    @keyframes shimmer { to { background-position: -150% 0; } }
+    .footer { margin-top: 24px; border-top: 1px solid #E4E4E4; padding: 16px 0 6px; display: flex; justify-content: space-between; gap: 14px; color: #858585; font-size: 11px; }
+    .footer strong { color: #444; }
+    .player-dock { position: fixed; inset: auto 0 0; z-index: 20; padding: 11px 0 calc(11px + env(safe-area-inset-bottom)); background: rgba(17,17,17,.97); color: #fff; border-top: 3px solid var(--red); box-shadow: 0 -10px 40px rgba(0,0,0,.13); backdrop-filter: blur(16px); }
+    .player-inner { display: grid; grid-template-columns: minmax(0,1fr) minmax(220px,390px) auto; align-items: center; gap: 16px; }
+    .now-playing { display: flex; align-items: center; gap: 10px; min-width: 0; }
+    .now-icon { flex: 0 0 43px; width: 43px; height: 43px; display: grid; place-items: center; border-radius: 12px; background: var(--red); font-size: 20px; }
+    .now-text { min-width: 0; }
+    .now-name { max-width: 100%; font-size: 13px; font-weight: 800; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .now-sub { color: #B2B2B2; font-size: 11px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    audio { width: 100%; height: 38px; accent-color: var(--red); }
+    .stop-button { min-height: 38px; padding: 0 12px; border: 1px solid #4A4A4A; border-radius: 9px; background: #222; color: #fff; white-space: nowrap; font-size: 12px; font-weight: 750; }
+    .stop-button:hover { border-color: #777; }
+    .dock-label { display: none; }
+    @media (max-width: 980px) {
+      .station-grid { grid-template-columns: repeat(2,minmax(0,1fr)); }
+      .hero { grid-template-columns: minmax(0,1fr) 205px; }
+      .search-panel { grid-template-columns: minmax(0,1fr) 185px; }
+      .search-panel .button-primary { grid-column: 1/-1; min-height: 43px; }
+      .player-inner { grid-template-columns: minmax(0,1fr) minmax(190px,320px) auto; gap: 12px; }
+    }
+    @media (max-width: 650px) {
+      body { padding-bottom: calc(150px + env(safe-area-inset-bottom)); }
+      .shell { width: calc(100% - 24px); }
+      .topbar-inner { min-height: 72px; }
+      .brand-logo { width: 44px; height: 44px; flex-basis: 44px; border-radius: 10px; }
+      .brand-name { font-size: 13px; letter-spacing: .06em; }
+      .brand-tag { font-size: 8px; letter-spacing: .13em; }
+      .brand { gap: 9px; }
+      .top-right { gap: 0; }
+      .brand-pill { padding: 8px 9px; font-size: 9px; letter-spacing: .03em; }
+      .hero { display: block; min-height: 0; margin: 14px auto 20px; border-radius: 20px; padding: 26px 21px 22px; }
+      .hero::before { width: 270px; height: 270px; right: -170px; top: -105px; }
+      h1 { font-size: clamp(35px, 10vw, 47px); margin-top: 12px; }
+      .hero-copy p { font-size: 13px; max-width: 360px; }
+      .hero-actions { margin-top: 18px; }
+      .button-primary, .button-quiet { min-height: 43px; padding: 10px 13px; font-size: 12px; }
+      .signal-card { margin-top: 20px; min-height: 105px; padding: 13px 14px; display: grid; grid-template-columns: auto minmax(0,1fr) auto; align-items: center; gap: 12px; }
+      .signal-top { display: none; }
+      .signal-icon { width: 43px; height: 43px; border-radius: 12px; font-size: 20px; }
+      .signal-bottom { display: contents; }
+      .signal-title { font-size: 13px; }
+      .signal-sub { font-size: 10px; }
+      .signal-bars { transform: scale(.82); transform-origin: right center; }
+      .section-title { font-size: 21px; }
+      .map-toggle-row { padding: 11px; align-items: flex-start; }
+      .map-toggle-button { min-height: 38px; padding: 7px 10px; font-size: 11px; }
+      #radioMap { height: 280px; }
+      .search-panel { grid-template-columns: minmax(0,1fr) auto; padding: 9px; gap: 8px; margin-top: 17px; }
+      .search-panel .query-field { grid-column: 1/2; grid-row: 1; padding-left: 10px; }
+      .search-panel .query-field input { font-size: 13px; }
+      .search-panel .country-field { grid-column: 1/-1; grid-row: 2; min-height: 43px; }
+      .search-panel .button-primary { grid-column: 2; grid-row: 1; min-height: 45px; padding: 0 12px; font-size: 12px; }
+      .chip { min-height: 38px; padding: 8px 12px; font-size: 11px; }
+      .quick-row { margin-bottom: 16px; gap: 7px; }
+      .list-head { align-items: center; margin-top: 18px; }
+      .list-title { font-size: 19px; }
+      .list-subtitle { max-width: 250px; }
+      .result-count { display: none; }
+      .station-grid { grid-template-columns: minmax(0,1fr); gap: 8px; }
+      .station { border-radius: 14px; padding: 11px; gap: 10px; }
+      .station-art { width: 46px; height: 46px; flex-basis: 46px; }
+      .station-name { font-size: 13px; }
+      .player-dock { padding: 9px 0 calc(9px + env(safe-area-inset-bottom)); }
+      .player-inner { grid-template-columns: minmax(0,1fr) auto; gap: 7px 10px; }
+      .now-playing { grid-column: 1/2; grid-row: 1; }
+      .now-icon { width: 37px; height: 37px; flex-basis: 37px; font-size: 17px; }
+      .now-name { font-size: 12px; }
+      .now-sub { font-size: 10px; }
+      .player-inner audio { grid-column: 1/-1; grid-row: 2; height: 36px; }
+      .stop-button { grid-column: 2; grid-row: 1; min-height: 36px; padding: 0 10px; font-size: 11px; }
+      .footer { flex-direction: column; gap: 5px; }
+    }
+    @media (max-width: 360px) {
+      .brand-pill { font-size: 0; padding: 10px; }
+      .brand-pill .live-dot { width: 8px; height: 8px; }
+      .brand-name { font-size: 12px; }
+      .search-panel .button-primary { padding: 0 9px; font-size: 11px; }
+      .station-action { width: 33px; height: 33px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; scroll-behavior: auto !important; transition-duration: .01ms !important; }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="shell topbar-inner">
+      <a class="brand" href="#top" aria-label="Tandav India Radio home" style="text-decoration:none;color:inherit">
+        <img class="brand-logo" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAyAAAAMgCAIAAABUEpE/AAAACXBIWXMAAA7EAAAOxAGVKw4bAAAFTWlUWHRYTUw6Y29tLmFkb2JlLnhtcAAAAAAAPD94cGFja2V0IGJlZ2luPSfvu78nIGlkPSdXNU0wTXBDZWhpSHpyZVN6TlRjemtjOWQnPz4KPHg6eG1wbWV0YSB4bWxuczp4PSdhZG9iZTpuczptZXRhLyc+CjxyZGY6UkRGIHhtbG5zOnJkZj0naHR0cDovL3d3dy53My5vcmcvMTk5OS8wMi8yMi1yZGYtc3ludGF4LW5zIyc+CgogPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9JycKICB4bWxuczpBdHRyaWI9J2h0dHA6Ly9ucy5hdHRyaWJ1dGlvbi5jb20vYWRzLzEuMC8nPgogIDxBdHRyaWI6QWRzPgogICA8cmRmOlNlcT4KICAgIDxyZGY6bGkgcmRmOnBhcnNlVHlwZT0nUmVzb3VyY2UnPgogICAgIDxBdHRyaWI6Q3JlYXRlZD4yMDI2LTA5LTAyPC9BdHRyaWI6Q3JlYXRlZD4KICAgICA8QXR0cmliOkRhdGE+eyZxdW90O2RvYyZxdW90OzomcXVvdDtEQUhVRWdqU0E0TSZxdW90OywmcXVvdDt1c2VyJnF1b3Q7OiZxdW90O1VBRzlRb1RWYnF3JnF1b3Q7LCZxdW90O2JyYW5kJnF1b3Q7OiZxdW90O0JBRzlRbUNOTGxvJnF1b3Q7fTwvQXR0cmliOkRhdGE+CiAgICAgPEF0dHJpYjpFeHRJZD5iNzk1ZTliNy0yZGQ1LTQxMGUtYmYwOC1jNmUzNDM0MjRmZGI8L0F0dHJpYjpFeHRJZD4KICAgICA8QXR0cmliOkZiSWQ+NTI1MjY1OTE0MTc5NTgwPC9BdHRyaWI6RmJJZD4KICAgICA8QXR0cmliOlRvdWNoVHlwZT4yPC9BdHRyaWI6VG91Y2hUeXBlPgogICAgPC9yZGY6bGk+CiAgIDwvcmRmOlNlcT4KICA8L0F0dHJpYjpBZHM+CiA8L3JkZjpEZXNjcmlwdGlvbj4KCiA8cmRmOkRlc2NyaXB0aW9uIHJkZjphYm91dD0nJwogIHhtbG5zOmRjPSdodHRwOi8vcHVybC5vcmcvZGMvZWxlbWVudHMvMS4x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mAkWAMBMsAAAZoIFADATLACAmWABAMwECwBgJlgAADPBAgCYCRYAwEywAABmggUAMBMsAICZYAEAzAQLAGAmWAAAM8ECAJgJFgDATLAAAGaCBQAwEywAgJlgAQDMBAsAYCZYAAAzwQIAmAkWAMBMsAAAZoIFADATLACAmWABAMwECwBgJlgAADPBAgCYCRYAwEywAABmggUAMBMsAICZYAEAzAQLAGAmWAAAM8ECAJgJFgDATLAAAGaCBQAwEywAgJlgAQDMBAsAYCZYAAAzwQIAmAkWAMBMsAAAZoIFADATLACAmWABAMwECwBgJlgAADPBAgCYCRYAwEywAABmggUAMBMsAICZYAEAzAQLAGAmWAAAM8ECAJgJFgDATLAAAGaCBQAwEywAgJlgAQDMBAsAYCZYAAAzwQIAmAkWAMBMsAAAZoIFADATLACAmWABAMwECwBgJlgAADPBAgCYCRYAwEywAABmggUAMBMsAICZYAEAzAQLAGAmWAAAM8ECAJgJFgDATLAAAGaCBQAwEywAgJlgAQDMBAsAYCZYAAAzwQIAmAkWAMBMsAAAZoIFADATLACAmWABAMwECwBgJlgAADPBAgCYBQAA///s3ctu4zgURVHqYSPO/3+tX+yBU6OWmAr6wK0brDVM1UAAAWnjkrIEFgBAmMACAAgTWAAAYQILACBMYAEAhAksAIAwgQUAECawAADCBBYAQJjAAgAIE1gAAGECCwAgTGABAIQJLACAMIEFABAmsAAAwgQWAECYwAIACBNYAABhAgsAIExgAQCECSwAgDCBBQAQJrAAAMIEFgBAmMACAAgTWAAAYQILACBMYAEAhAksAIAwgQUAECawAADCBBYAQJjAAgAIE1gAAGECCwAgTGABAIQJLACAMIEFABAmsAAAwgQWAECYwAIACBNYAABhAgsAIExgAQCECSwAgDCBBQAQJrAAAMIEFgBAmMACAAgTWAAAYQILACBMYAEAhAksAIAwgQUAECawAADCBBYAQJjAAgAIE1gAAGECCwAgTGABAIQJLACAMIEFABAmsAAAwgQWAECYwAIACBNYAABhAgsAIExgAQCECSwAgDCBBQAQJrAAAMIEFgBAmMACAAgTWAAAYQILACBMYAEAhAksAIAwgQUAECawoLD+f18A/1Hvu2tocaE0gQVV9eEzeJqmaZredzX83DRN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E1gAADGBBQAQE1gAADGBBQAQE1gAADGBBQAQE1gAADGBBQAQE1gAADGBBQAQE1gAADGBBQAQE1gAADGBBQAQE1gAADGBBQAQE1gAADGBBQAQE1gAADGBBQAQE1gAADGBBQAQE1gAADGBBQAQE1gAADGBBQAQE1gAADGBBQAQE1gAADGBBQAQE1gAADGBBQAQE1gAADGBBQAQE1gAADGBBQAQE1gAADGBBQAQE1gAADGBBQAQE1gAADGBBQAQE1gAADGBBQAQE1gAADGBBQAQE1gAADGBBQAQE1gAALE9PeBx1pmeAADwy4MFABATWAAAMYEFABATWAAAMYEFABATWAAAMYEFABATWAAAMYEFABATWAAAMYEFABATWAAAMYEFABATWAAAMYEFABATWAAAMYEFABATWAAAMYEFABATWAAAMYEFABATWAAAMYEFABATWAAAMYEFABATWAAAMYEFABATWAAAMYEFABATWAAAMYEFABATWAAAMYEFABATWAAAMYEFABATWAAAMYEFABATWAAAMYEFABATWAAAMYEFABATWAAAMYEFABATWAAAMYEFABATWAAAsQuo3f/V3eNSWAAAAABJRU5ErkJggg==" alt="Tandav India logo" width="52" height="52">
+        <div>
+          <div class="brand-name">TANDAV <span>INDIA</span></div>
+          <div class="brand-tag">One INDIA One App</div>
+        </div>
+      </a>
+      <div class="top-right">
+        <div class="brand-pill"><span class="live-dot"></span><span>TANDAV RADIO</span></div>
+      </div>
+    </div>
+  </header>
 
-permissions:
-  contents: write
+  <main id="top" class="shell">
+    <section class="hero" aria-labelledby="heroTitle">
+      <div class="hero-copy">
+        <div class="eyebrow"><span class="eyebrow-mark"></span> TUNE IN · STAY CONNECTED</div>
+        <h1 id="heroTitle">Bharat's sound.<br><span>One tap away.</span></h1>
+        <p>Discover live radio from Indian cities and around the world. Find your station, press play, and make every moment sound better.</p>
+        <div class="hero-actions">
+          <button class="button-primary" type="button" id="exploreBtn">Explore stations <span aria-hidden="true">↘</span></button>
+          <button class="button-quiet" type="button" id="resumeBtn">▶ Resume listening</button>
+        </div>
+      </div>
+      <div class="signal-card" aria-label="Tandav live radio">
+        <div class="signal-top"><span>Worldwide directory</span><span>TI / RADIO</span></div>
+        <div class="signal-bottom">
+          <div class="signal-icon" aria-hidden="true">♫</div>
+          <div><div class="signal-title">Your world. Your frequency.</div><div class="signal-sub">Music · News · Talk · More</div></div>
+          <div class="signal-bars" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+        </div>
+      </div>
+    </section>
 
-jobs:
-  build:
-    runs-on: ubuntu-latest
+    <section class="content" id="explorer" aria-label="Radio station explorer">
+      <div class="section-kicker">Find your station</div>
+      <h2 class="section-title">What do you want to hear?</h2>
+      <p class="section-copy">Search by station name or discover stations by region and genre.</p>
 
-    steps:
-      - name: Checkout repo
-        uses: actions/checkout@v4
+      <form class="search-panel" id="searchForm">
+        <label class="field query-field"><span class="field-icon" aria-hidden="true">⌕</span><input id="query" type="search" placeholder="Try Radio Mirchi, BBC, FM…" autocomplete="off" aria-label="Search radio station"></label>
+        <label class="field country-field"><span class="field-icon" aria-hidden="true">◎</span><select id="country" aria-label="Filter stations by country">
+          <option value="IN" selected>🇮🇳 India</option>
+          <option value="">🌍 All countries</option>
+          <option value="US">United States</option><option value="GB">United Kingdom</option><option value="CA">Canada</option><option value="AU">Australia</option><option value="NP">Nepal</option><option value="AE">United Arab Emirates</option><option value="PK">Pakistan</option><option value="BD">Bangladesh</option><option value="LK">Sri Lanka</option><option value="DE">Germany</option><option value="FR">France</option><option value="JP">Japan</option><option value="BR">Brazil</option><option value="ZA">South Africa</option>
+        </select></label>
+        <button class="button-primary" id="searchBtn" type="submit">Search <span aria-hidden="true">→</span></button>
+      </form>
 
-      - name: Set up Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: '3.x'
+      <nav class="quick-row" aria-label="Quick station filters">
+        <button class="chip active" type="button" data-mode="popular">✦ Popular</button>
+        <button class="chip" type="button" data-mode="india">🇮🇳 India</button>
+        <button class="chip" type="button" data-mode="world">🌍 Worldwide</button>
+        <button class="chip" type="button" data-mode="hindi">Hindi</button>
+        <button class="chip" type="button" data-mode="news">News & Talk</button>
+        <button class="chip" type="button" data-mode="favorites">♥ Favorites</button>
+        <button class="chip" type="button" data-mode="recent">◷ Recently played</button>
+      </nav>
 
-      - name: Install dependencies
-        run: pip install requests
+      <div class="map-toggle-row">
+        <div><div class="map-toggle-title">Explore stations by location</div><div class="map-toggle-copy">Open the live map when you need it — keeps the page fast.</div></div>
+        <button class="map-toggle-button" type="button" id="mapToggleBtn" aria-expanded="false" aria-controls="mapPanel">🌍 Open map</button>
+      </div>
+      <section id="mapPanel" class="map-panel" hidden aria-label="Radio station map">
+        <div class="map-heading"><div><strong>Radio around the world</strong><span>Tap a red marker to play a station.</span></div></div>
+        <div id="radioMap" role="application" aria-label="Interactive map of radio stations"></div>
+        <p id="mapNote" class="map-note">The map loads only when opened. Stations without coordinates cannot be shown on the map.</p>
+      </section>
 
-      - name: Run Scraper
-        run: python sync.py
+      <section class="station-section" id="stationSection" aria-labelledby="listTitle">
+        <div class="list-head">
+          <div><div class="list-title" id="listTitle">Popular stations in India</div><div class="list-subtitle" id="listSubtitle">Live stations from the community directory</div></div>
+          <div class="head-tools"><span class="result-count" id="resultCount">Ready to tune in</span><button class="icon-button" id="retryBtn" type="button" aria-label="Refresh stations" title="Refresh stations">↻</button></div>
+        </div>
+        <div id="status" role="status" aria-live="polite">Connecting to the radio directory…</div>
+        <div class="station-grid" id="stations"></div>
+      </section>
+    </section>
 
-      - name: Commit and Push
-        run: |
-          git config --global user.name "Tandav Bot"
-          git config --global user.email "bot@tandav.india"
-          git add jan_shakti_live.json
-          git commit -m "Auto-update Ledger" || exit 0
-          git push
+    <footer class="footer">
+      <div><strong>TANDAV INDIA</strong> · One INDIA One App</div>
+      <div>Station listings are community sourced. Stream availability and rights are managed by each broadcaster.</div>
+    </footer>
+  </main>
+
+  <section class="player-dock" aria-label="Live radio player">
+    <div class="shell player-inner">
+      <div class="now-playing"><div class="now-icon" aria-hidden="true">♫</div><div class="now-text"><div class="now-name" id="playingName">Choose a station to start</div><div class="now-sub" id="playingMeta">Tandav India Radio · Ready</div></div></div>
+      <audio id="audio" controls preload="none" playsinline aria-label="Radio playback controls"></audio>
+      <button class="stop-button" id="stopBtn" type="button" title="Stop playback">■ Stop</button>
+    </div>
+  </section>
+
+  <script>
+    'use strict';
+    // Use several official Radio Browser public API mirrors, prioritising the first working host.
+    const API_HOSTS = [
+      'https://de1.api.radio-browser.info',
+      'https://de2.api.radio-browser.info',
+      'https://nl1.api.radio-browser.info'
+    ];
+    const FAV_KEY = 'tandav-radio-favorites-v1';
+    const RECENT_KEY = 'tandav-radio-recent-v1';
+    const els = {
+      form: document.getElementById('searchForm'), query: document.getElementById('query'),
+      country: document.getElementById('country'), searchBtn: document.getElementById('searchBtn'),
+      status: document.getElementById('status'), stations: document.getElementById('stations'),
+      title: document.getElementById('listTitle'), subtitle: document.getElementById('listSubtitle'),
+      count: document.getElementById('resultCount'), audio: document.getElementById('audio'),
+      playingName: document.getElementById('playingName'), playingMeta: document.getElementById('playingMeta')
+    };
+    let currentMode = 'popular';
+    let currentStations = [];
+    let currentStation = null;
+    let activeHls = null;
+    let requestNumber = 0;
+    let playbackNumber = 0;
+    let apiHosts = [...API_HOSTS];
+    let mapInstance = null;
+    let mapLayer = null;
+    let mapAssetPromise = null;
+    let mapRequestNumber = 0;
+
+    function setStatus(message, isError = false) {
+      els.status.textContent = message;
+      els.status.classList.toggle('error', isError);
+    }
+    function safeText(value, fallback = '') {
+      return typeof value === 'string' && value.trim() ? value.trim() : fallback;
+    }
+    function readIds(key) {
+      try {
+        const value = JSON.parse(localStorage.getItem(key) || '[]');
+        return Array.isArray(value) ? value.filter(item => typeof item === 'string') : [];
+      } catch { return []; }
+    }
+    function writeIds(key, ids) {
+      try { localStorage.setItem(key, JSON.stringify(ids)); } catch { /* Storage can be unavailable in private modes. */ }
+    }
+    function getFavorites() { return readIds(FAV_KEY); }
+    function getRecent() { return readIds(RECENT_KEY); }
+    function isFavorite(station) { return getFavorites().includes(station.stationuuid); }
+    function setActiveChip(mode) {
+      document.querySelectorAll('[data-mode]').forEach(button => {
+        const active = button.dataset.mode === mode;
+        button.classList.toggle('active', active);
+        button.setAttribute('aria-pressed', String(active));
+      });
+    }
+    function renderLoading() {
+      const fragment = document.createDocumentFragment();
+      for (let i = 0; i < 6; i++) {
+        const skeleton = document.createElement('div');
+        skeleton.className = 'skeleton';
+        skeleton.setAttribute('aria-hidden', 'true');
+        fragment.appendChild(skeleton);
+      }
+      els.stations.replaceChildren(fragment);
+      els.count.textContent = 'Loading…';
+    }
+
+    async function fetchFromApi(pathAndQuery, timeoutMs = 6500) {
+      let lastError = null;
+      for (const host of apiHosts) {
+        const controller = new AbortController();
+        const timer = setTimeout(() => controller.abort(), timeoutMs);
+        try {
+          const response = await fetch(host + pathAndQuery, {
+            method: 'GET', mode: 'cors', cache: 'default', signal: controller.signal,
+            headers: { 'Accept': 'application/json' }
+          });
+          if (!response.ok) throw new Error('Directory returned HTTP ' + response.status);
+          const data = await response.json();
+          if (!Array.isArray(data)) throw new Error('Unexpected directory response');
+          apiHosts = [host, ...apiHosts.filter(item => item !== host)];
+          return data;
+        } catch (error) {
+          lastError = error;
+        } finally {
+          clearTimeout(timer);
+        }
+      }
+      throw lastError || new Error('Radio directory unavailable');
+    }
+
+    function buildQuery() {
+      const params = new URLSearchParams({
+        limit: '36', hidebroken: 'true', lastcheckok: 'true', is_https: 'true',
+        order: 'clickcount', reverse: 'true'
+      });
+      const query = els.query.value.trim();
+      const country = els.country.value;
+      if (query) params.set('name', query);
+      if (currentMode === 'hindi') {
+        params.set('tagList', 'hindi');
+      } else if (currentMode === 'news') {
+        params.set('tagList', 'news');
+      } else if (currentMode === 'world') {
+        // No country constraint for worldwide discovery.
+      } else if (currentMode === 'india' || currentMode === 'popular') {
+        params.set('countrycode', 'IN');
+      } else if (country) {
+        params.set('countrycode', country);
+      }
+      return '/json/stations/search?' + params.toString();
+    }
+
+    async function loadStations() {
+      const thisRequest = ++requestNumber;
+      if (currentMode === 'favorites' || currentMode === 'recent') {
+        els.searchBtn.disabled = false;
+        els.searchBtn.innerHTML = 'Search <span aria-hidden="true">→</span>';
+        await loadSavedStations(thisRequest, currentMode);
+        return;
+      }
+      els.searchBtn.disabled = true;
+      els.searchBtn.textContent = 'Searching…';
+      renderLoading();
+      setStatus('Finding stations…');
+      try {
+        const data = await fetchFromApi(buildQuery());
+        if (thisRequest !== requestNumber) return;
+        currentStations = data.filter(station => station && station.stationuuid && (station.url_resolved || station.url));
+        renderStations(currentStations);
+        if (currentStations.length) {
+          setStatus('Choose a station and press play to listen live.');
+          els.count.textContent = `${currentStations.length} stations`;
+        } else {
+          renderEmpty('No stations found', 'Try a shorter search or choose another country or category.');
+          setStatus('No playable stations matched those filters.', true);
+          els.count.textContent = '0 stations';
+        }
+      } catch (error) {
+        if (thisRequest !== requestNumber) return;
+        console.warn('Radio directory error:', error);
+        renderEmpty('Radio directory unavailable', 'Check your connection and tap refresh. If you opened this file directly, try running it on localhost or HTTPS.');
+        setStatus('Could not connect to the station directory. Please try again.', true);
+        els.count.textContent = 'Offline';
+      } finally {
+        if (thisRequest === requestNumber) {
+          els.searchBtn.disabled = false;
+          els.searchBtn.innerHTML = 'Search <span aria-hidden="true">→</span>';
+        }
+      }
+    }
+
+    async function loadSavedStations(thisRequest, mode) {
+      const ids = mode === 'favorites' ? getFavorites() : getRecent();
+      els.title.textContent = mode === 'favorites' ? 'Your favorite stations' : 'Recently played';
+      els.subtitle.textContent = mode === 'favorites' ? 'Saved on this device' : 'Your latest listening history on this device';
+      els.stations.replaceChildren();
+      if (!ids.length) {
+        renderEmpty(mode === 'favorites' ? 'No favorites yet' : 'No listening history yet', mode === 'favorites' ? 'Tap ♡ on a station to save it here.' : 'Play a station and it will appear here.');
+        setStatus(mode === 'favorites' ? 'Your saved stations will appear here.' : 'Your recent stations will appear here.');
+        els.count.textContent = '0 stations';
+        return;
+      }
+      renderLoading();
+      setStatus(mode === 'favorites' ? 'Loading your favorites…' : 'Loading recently played stations…');
+      try {
+        const params = new URLSearchParams({ uuids: ids.slice(0, 50).join(',') });
+        const data = await fetchFromApi('/json/stations/byuuid?' + params.toString());
+        if (thisRequest !== requestNumber) return;
+        const lookup = new Map(data.map(station => [station.stationuuid, station]));
+        currentStations = ids.map(id => lookup.get(id)).filter(station => station && (station.url_resolved || station.url));
+        renderStations(currentStations);
+        setStatus(`${currentStations.length} station(s) available.`);
+        els.count.textContent = `${currentStations.length} stations`;
+        if (!currentStations.length) renderEmpty('Stations not available', 'Some saved streams may have been removed from the directory.');
+      } catch (error) {
+        if (thisRequest !== requestNumber) return;
+        renderEmpty('Could not load saved stations', 'Check your connection and tap refresh to try again.');
+        setStatus('Unable to load saved stations.', true);
+        els.count.textContent = 'Unavailable';
+      }
+    }
+
+    function renderEmpty(title, detail) {
+      const div = document.createElement('div');
+      div.className = 'empty';
+      const heading = document.createElement('strong'); heading.textContent = title;
+      const description = document.createElement('span'); description.textContent = detail;
+      div.append(heading, description);
+      els.stations.replaceChildren(div);
+    }
+
+    function renderStations(stations) {
+      els.stations.replaceChildren();
+      if (!stations.length) { renderEmpty('No stations to show', 'Try another category or search.'); return; }
+      const fragment = document.createDocumentFragment();
+      stations.forEach(station => {
+        const card = document.createElement('article'); card.className = 'station';
+        const art = document.createElement('div'); art.className = 'station-art'; art.textContent = 'T';
+        const favicon = safeText(station.favicon);
+        if (favicon && /^https:\/\//i.test(favicon)) {
+          const img = document.createElement('img'); img.loading = 'lazy'; img.decoding = 'async'; img.alt = '';
+          img.src = favicon; img.onerror = () => { img.remove(); art.textContent = 'T'; };
+          art.textContent = ''; art.appendChild(img);
+        }
+        const info = document.createElement('div'); info.className = 'station-info';
+        const name = document.createElement('div'); name.className = 'station-name'; name.textContent = safeText(station.name, 'Unnamed station');
+        const meta = document.createElement('div'); meta.className = 'station-meta';
+        const parts = [safeText(station.country, 'Unknown location'), safeText(station.language), safeText(station.codec)];
+        meta.textContent = parts.filter(Boolean).join(' · ') || 'Live radio';
+        info.append(name, meta);
+        const actions = document.createElement('div'); actions.className = 'station-actions';
+        const favorite = document.createElement('button'); favorite.type = 'button'; favorite.className = 'station-action favorite';
+        const updateFavoriteButton = () => {
+          const saved = isFavorite(station);
+          favorite.textContent = saved ? '♥' : '♡';
+          favorite.title = saved ? 'Remove from favorites' : 'Add to favorites';
+          favorite.setAttribute('aria-label', favorite.title);
+          favorite.setAttribute('aria-pressed', String(saved));
+        };
+        updateFavoriteButton();
+        favorite.addEventListener('click', () => {
+          const ids = getFavorites();
+          const next = ids.includes(station.stationuuid) ? ids.filter(id => id !== station.stationuuid) : [station.stationuuid, ...ids];
+          writeIds(FAV_KEY, next.slice(0, 100));
+          updateFavoriteButton();
+          if (currentMode === 'favorites') loadStations();
+          else setStatus(next.includes(station.stationuuid) ? 'Added to your favorites.' : 'Removed from your favorites.');
+        });
+        const play = document.createElement('button'); play.type = 'button'; play.className = 'station-action play'; play.textContent = '▶';
+        play.title = 'Play ' + safeText(station.name, 'station'); play.setAttribute('aria-label', play.title);
+        play.addEventListener('click', () => playStation(station));
+        actions.append(favorite, play); card.append(art, info, actions); fragment.appendChild(card);
+      });
+      els.stations.appendChild(fragment);
+      if (mapInstance) updateMapMarkers(stations);
+    }
+
+    function rememberStation(station) {
+      const ids = getRecent().filter(id => id !== station.stationuuid);
+      ids.unshift(station.stationuuid);
+      writeIds(RECENT_KEY, ids.slice(0, 15));
+    }
+
+    function loadHlsLibrary() {
+      return new Promise((resolve, reject) => {
+        if (window.Hls) return resolve(window.Hls);
+        const previous = document.querySelector('script[data-hls-loader]');
+        if (previous) {
+          previous.addEventListener('load', () => window.Hls ? resolve(window.Hls) : reject(new Error('HLS helper unavailable')), { once: true });
+          previous.addEventListener('error', () => reject(new Error('HLS helper failed to load')), { once: true });
+          return;
+        }
+        const script = document.createElement('script');
+        script.src = 'https://cdn.jsdelivr.net/npm/hls.js@1.5.20/dist/hls.min.js';
+        script.async = true; script.dataset.hlsLoader = 'true';
+        script.onload = () => window.Hls ? resolve(window.Hls) : reject(new Error('HLS helper unavailable'));
+        script.onerror = () => reject(new Error('Could not load the HLS helper'));
+        document.head.appendChild(script);
+      });
+    }
+
+    async function playStation(station) {
+      const token = ++playbackNumber;
+      const url = safeText(station.url_resolved) || safeText(station.url);
+      if (!url) { setStatus('This station does not have a stream URL.', true); return; }
+      currentStation = station;
+      rememberStation(station);
+      if (activeHls) { activeHls.destroy(); activeHls = null; }
+      els.audio.pause(); els.audio.removeAttribute('src'); els.audio.load();
+      els.playingName.textContent = safeText(station.name, 'Live radio');
+      els.playingMeta.textContent = [safeText(station.country, 'Radio stream'), safeText(station.language), station.bitrate ? `${station.bitrate} kbps` : 'Live stream'].filter(Boolean).join(' · ');
+      setStatus('Connecting to ' + safeText(station.name, 'station') + '…');
+      const isHls = Number(station.hls) === 1 || /\.m3u8(?:$|\?)/i.test(url);
+      try {
+        if (isHls && !els.audio.canPlayType('application/vnd.apple.mpegurl')) {
+          const Hls = await loadHlsLibrary();
+          if (token !== playbackNumber) return;
+          if (!Hls.isSupported()) throw new Error('HLS is unsupported in this browser.');
+          activeHls = new Hls({ enableWorker: true, lowLatencyMode: false, backBufferLength: 30 });
+          activeHls.loadSource(url);
+          activeHls.attachMedia(els.audio);
+          activeHls.on(Hls.Events.MANIFEST_PARSED, async () => {
+            if (token !== playbackNumber) return;
+            try { await els.audio.play(); setStatus('Now playing: ' + safeText(station.name, 'station')); }
+            catch { setStatus('Tap Play in the player to start this station.'); }
+          });
+          activeHls.on(Hls.Events.ERROR, (_event, data) => {
+            if (token === playbackNumber && data && data.fatal) setStatus('This stream could not be played. Try another station.', true);
+          });
+        } else {
+          els.audio.src = url; els.audio.load();
+          await els.audio.play();
+          if (token === playbackNumber) setStatus('Now playing: ' + safeText(station.name, 'station'));
+        }
+      } catch (error) {
+        if (token !== playbackNumber) return;
+        console.warn('Radio playback error:', error);
+        setStatus('Playback failed for this station. Try Play again or choose another stream.', true);
+      }
+    }
+
+    function loadMapAssets() {
+      if (window.L) return Promise.resolve(window.L);
+      if (mapAssetPromise) return mapAssetPromise;
+      mapAssetPromise = new Promise((resolve, reject) => {
+        let css = document.querySelector('link[data-leaflet-css]');
+        if (!css) {
+          css = document.createElement('link');
+          css.rel = 'stylesheet';
+          css.href = 'https://unpkg.com/leaflet@1.9.4/dist/leaflet.css';
+          css.dataset.leafletCss = 'true';
+          document.head.appendChild(css);
+        }
+        const script = document.createElement('script');
+        script.src = 'https://unpkg.com/leaflet@1.9.4/dist/leaflet.js';
+        script.async = true;
+        script.onload = () => window.L ? resolve(window.L) : reject(new Error('Map library unavailable'));
+        script.onerror = () => reject(new Error('Could not load the map library'));
+        document.head.appendChild(script);
+      }).catch(error => { mapAssetPromise = null; throw error; });
+      return mapAssetPromise;
+    }
+
+    function updateMapMarkers(stations) {
+      if (!mapInstance || !window.L) return;
+      if (mapLayer) mapLayer.clearLayers();
+      const bounds = [];
+      let plotted = 0;
+      stations.forEach(station => {
+        const lat = Number(station.geo_lat);
+        const lon = Number(station.geo_long);
+        if (!Number.isFinite(lat) || !Number.isFinite(lon) || Math.abs(lat) > 90 || Math.abs(lon) > 180) return;
+        const marker = window.L.circleMarker([lat, lon], {
+          radius: 7, color: '#FFFFFF', weight: 2, fillColor: '#CD130A', fillOpacity: 0.95
+        });
+        const popup = document.createElement('div');
+        const title = document.createElement('span');
+        title.className = 'map-popup-title';
+        title.textContent = safeText(station.name, 'Radio station');
+        const meta = document.createElement('div');
+        meta.style.cssText = 'font-size:11px;color:#666;margin-bottom:8px';
+        meta.textContent = [safeText(station.country), safeText(station.language)].filter(Boolean).join(' · ');
+        const play = document.createElement('button');
+        play.type = 'button'; play.className = 'map-popup-play'; play.textContent = '▶ Play station';
+        play.addEventListener('click', () => playStation(station));
+        popup.append(title, meta, play);
+        marker.bindPopup(popup);
+        marker.addTo(mapLayer);
+        bounds.push([lat, lon]);
+        plotted++;
+      });
+      const note = document.getElementById('mapNote');
+      if (plotted) {
+        note.textContent = `${plotted} mapped station${plotted === 1 ? '' : 's'} from the current results. Select a red marker to listen.`;
+        if (bounds.length === 1) mapInstance.setView(bounds[0], 7);
+        else mapInstance.fitBounds(bounds, { padding: [24, 24], maxZoom: 6 });
+      } else {
+        note.textContent = 'No stations in these results have valid map coordinates. Try Worldwide or another country filter.';
+        mapInstance.setView([22.9, 79.2], 4);
+      }
+    }
+
+    async function toggleMap() {
+      const panel = document.getElementById('mapPanel');
+      const button = document.getElementById('mapToggleBtn');
+      if (!panel.hidden) {
+        panel.hidden = true;
+        button.textContent = '🌍 Open map';
+        button.setAttribute('aria-expanded', 'false');
+        return;
+      }
+      panel.hidden = false;
+      button.textContent = 'Hide map';
+      button.setAttribute('aria-expanded', 'true');
+      const note = document.getElementById('mapNote');
+      note.textContent = 'Loading the map…';
+      try {
+        const L = await loadMapAssets();
+        if (!mapInstance) {
+          mapInstance = L.map('radioMap', { zoomControl: true, preferCanvas: true }).setView([22.9, 79.2], 4);
+          L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 18,
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a>'
+          }).addTo(mapInstance);
+          mapLayer = L.layerGroup().addTo(mapInstance);
+        }
+        window.setTimeout(() => mapInstance && mapInstance.invalidateSize(), 120);
+        updateMapMarkers(currentStations);
+        // When the current results have few coordinates, fetch a small geo-enabled result set in the background.
+        if (!currentStations.some(s => Number.isFinite(Number(s.geo_lat)) && Number.isFinite(Number(s.geo_long)))) {
+          const thisMapRequest = ++mapRequestNumber;
+          const params = new URLSearchParams({ limit: '100', hidebroken: 'true', lastcheckok: 'true', is_https: 'true', has_geo_info: 'true', order: 'clickcount', reverse: 'true' });
+          if (currentMode === 'india' || currentMode === 'popular') params.set('countrycode', 'IN');
+          try {
+            const geoStations = await fetchFromApi('/json/stations/search?' + params.toString());
+            if (thisMapRequest !== mapRequestNumber || panel.hidden) return;
+            updateMapMarkers(geoStations);
+          } catch (_) {
+            note.textContent = 'The map is ready, but location data could not be loaded. Refresh or change your station filters.';
+          }
+        }
+      } catch (error) {
+        console.warn('Map loading error:', error);
+        note.textContent = 'The map could not load. Check your connection and try opening it again.';
+        setStatus('The map could not load. Radio search and playback can still work.', true);
+      }
+    }
+
+    function selectMode(mode) {
+      currentMode = mode;
+      setActiveChip(mode);
+      if (mode === 'popular' || mode === 'india') {
+        els.country.value = 'IN';
+        els.query.value = '';
+        els.title.textContent = mode === 'popular' ? 'Popular stations in India' : 'Radio stations in India';
+        els.subtitle.textContent = mode === 'popular' ? 'Trending stations from the community directory' : 'Discover Indian stations and local voices';
+      } else if (mode === 'world') {
+        els.country.value = ''; els.query.value = '';
+        els.title.textContent = 'Stations around the world';
+        els.subtitle.textContent = 'Discover broadcasters from different countries';
+      } else if (mode === 'hindi') {
+        els.country.value = ''; els.query.value = '';
+        els.title.textContent = 'Hindi radio stations';
+        els.subtitle.textContent = 'Music, entertainment and talk in Hindi';
+      } else if (mode === 'news') {
+        els.country.value = ''; els.query.value = '';
+        els.title.textContent = 'News & talk radio';
+        els.subtitle.textContent = 'News, discussion and spoken-word stations';
+      } else if (mode === 'favorites') {
+        els.title.textContent = 'Your favorite stations';
+        els.subtitle.textContent = 'Your saved stations on this device';
+      } else if (mode === 'recent') {
+        els.title.textContent = 'Recently played';
+        els.subtitle.textContent = 'Pick up where you left off';
+      }
+      loadStations();
+    }
+
+    els.form.addEventListener('submit', event => {
+      event.preventDefault();
+      const hasQuery = Boolean(els.query.value.trim());
+      currentMode = hasQuery ? 'search' : (els.country.value === 'IN' ? 'india' : (els.country.value ? 'country' : 'world'));
+      setActiveChip(currentMode);
+      els.title.textContent = hasQuery ? `Search results for “${els.query.value.trim()}”` : (els.country.value ? 'Stations by country' : 'Stations around the world');
+      els.subtitle.textContent = 'Select a station to start listening';
+      loadStations();
+    });
+    document.querySelectorAll('[data-mode]').forEach(button => button.addEventListener('click', () => selectMode(button.dataset.mode)));
+    document.getElementById('retryBtn').addEventListener('click', loadStations);
+    document.getElementById('mapToggleBtn').addEventListener('click', toggleMap);
+    document.getElementById('exploreBtn').addEventListener('click', () => {
+      document.getElementById('explorer').scrollIntoView({ behavior: 'smooth', block: 'start' });
+      window.setTimeout(() => els.query.focus({ preventScroll: true }), 350);
+    });
+    document.getElementById('resumeBtn').addEventListener('click', async () => {
+      if (!currentStation) {
+        const recent = getRecent();
+        if (recent.length) {
+          try {
+            const data = await fetchFromApi('/json/stations/byuuid?' + new URLSearchParams({ uuids: recent[0] }).toString());
+            if (data[0]) await playStation(data[0]);
+            else setStatus('No recently played station found. Choose a station below.');
+          } catch { setStatus('Could not restore your last station. Choose one from the list.', true); }
+        } else {
+          setStatus('You have not listened to a station yet. Choose one below.');
+          document.getElementById('explorer').scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+        return;
+      }
+      try { await els.audio.play(); setStatus('Now playing: ' + safeText(currentStation.name, 'station')); }
+      catch { setStatus('Use the Play control in the player to resume.', true); }
+    });
+    document.getElementById('stopBtn').addEventListener('click', () => {
+      playbackNumber++;
+      els.audio.pause(); els.audio.removeAttribute('src'); els.audio.load();
+      if (activeHls) { activeHls.destroy(); activeHls = null; }
+      currentStation = null;
+      els.playingName.textContent = 'Playback stopped';
+      els.playingMeta.textContent = 'Choose another station';
+      setStatus('Playback stopped.');
+    });
+    els.audio.addEventListener('error', () => {
+      if (currentStation) setStatus('This station stopped or is blocked by its stream host. Try another station.', true);
+    });
+    els.audio.addEventListener('playing', () => {
+      if (currentStation) setStatus('Now playing: ' + safeText(currentStation.name, 'station'));
+    });
+
+    // Initial directory load: the browser fetches only a small, health-checked set of stations.
+    loadStations();
+  </script>
+</body>
+</html>
